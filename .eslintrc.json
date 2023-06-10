@@ -1,0 +1,24 @@
+{
+  "root": true,
+  "plugins": ["unicorn", "prettier"],
+  "extends": [
+    "plugin:vue/vue3-essential",
+    "eslint:recommended",
+    "@vue/eslint-config-typescript",
+    "@vue/eslint-config-prettier/skip-formatting",
+    "plugin:unicorn/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@intlify/vue-i18n/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "overrides": [
+    {
+      "files": ["./tools/translator.cjs"],
+      "parserOptions": { "sourceType": "script", "ecmaVersion": 11 },
+      "env": { "node": true }
+    }
+  ],
+  "rules": { "vue/multi-word-component-names": "off", "@intlify/vue-i18n/no-missing-keys": "off" }
+}
