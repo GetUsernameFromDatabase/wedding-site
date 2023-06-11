@@ -61,7 +61,7 @@
         </v-navigation-drawer>
 
         <v-main
-          ><component class="w-full h-full overflow-auto pb-4" :is="currentView.component"
+          ><component class="w-full h-full overflow-auto py-3" :is="currentView.component"
         /></v-main>
       </v-layout>
     </v-card>

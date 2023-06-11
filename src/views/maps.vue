@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-auto px-6 pt-2">
+  <div class="overflow-auto px-6">
     <v-expansion-panels multiple v-model="panels">
       <v-expansion-panel>
         <v-expansion-panel-title
