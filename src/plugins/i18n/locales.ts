@@ -25,6 +25,7 @@ const estonianLocale = {
   $vuetify: et,
   message: {
     devTestMessage: 'testimine',
+    directLink: 'otselink',
   },
   titles: {
     maps: 'Kaardid',
@@ -35,6 +36,7 @@ const estonianLocale = {
     notfound: 'Siit küll ei leia midagi -- nii pime',
   },
   maps: {
+    linksToMaps: 'Lingid kaartidele',
     procession: 'Pulma Rongkäik',
     ourLocation: 'Meie Asukoht',
   },
@@ -45,6 +47,7 @@ export const availableLocales: AvailableLocales = {
     $vuetify: en,
     message: {
       devTestMessage: 'testing',
+      directLink: 'direct link',
     },
     titles: {
       maps: 'Maps',
@@ -55,6 +58,7 @@ export const availableLocales: AvailableLocales = {
       notfound: "Sorry we cant find what you are looking for 'cuz its so dark in here",
     },
     maps: {
+      linksToMaps: 'Links to maps',
       procession: 'Wedding Procession',
       ourLocation: 'Our Location',
     },
