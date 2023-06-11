@@ -27,7 +27,7 @@ const estonianLocale = {
     devTestMessage: 'testimine',
     directLink: 'otselink',
   },
-  titles: {
+  navigation: {
     maps: 'Kaardid',
     home: 'Koduleht',
   },
@@ -49,7 +49,7 @@ export const availableLocales: AvailableLocales = {
       devTestMessage: 'testing',
       directLink: 'direct link',
     },
-    titles: {
+    navigation: {
       maps: 'Maps',
       home: 'Home',
     },

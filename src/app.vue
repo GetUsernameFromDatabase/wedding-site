@@ -80,13 +80,19 @@ const store = useMainStore();
 
 // --- ROUTING
 const routes: RouteList = [
-  { type: 'nav', route: '/', component: ViewIndex, icon: 'mdi-home', translateKey: 'titles.home' },
+  {
+    type: 'nav',
+    route: '/',
+    component: ViewIndex,
+    icon: 'mdi-home',
+    translateKey: 'navigation.home',
+  },
   {
     type: 'nav',
     route: '/maps',
     component: ViewMaps,
     icon: 'mdi-map-outline',
-    translateKey: 'titles.maps',
+    translateKey: 'navigation.maps',
   },
   { type: 'simple', route: '/ryan', component: ViewRyan },
   { type: 'simple', route: '/marion', component: ViewMarion },
