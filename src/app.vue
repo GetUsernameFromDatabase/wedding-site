@@ -34,7 +34,7 @@
       <v-navigation-drawer v-model="showDrawer" temporary>
         <v-list-item
           prepend-avatar="https://avatars.githubusercontent.com/u/49920260?v=4"
-          title="Ryan Kruberg"
+          :title="store.dateNow.isBefore(weddingCeremonyDate) ? 'Ryan Kruberg' : 'Ryan Murulo'"
           href="#/ryan"
         ></v-list-item>
         <v-list-item
@@ -72,8 +72,11 @@ import { useI18n } from 'vue-i18n';
 import type { RouteList, SimpleRoute, ViewableRoute } from './_types/routes';
 import type { useI18nType } from './plugins/i18n/vue-i18n';
 import { View404, ViewIndex, ViewMaps, ViewMarion, ViewRyan } from './views';
+import { useMainStore } from './stores/main';
+import { weddingCeremonyDate } from './info/dates';
 
 const { t } = useI18n<useI18nType>();
+const store = useMainStore();
 
 // --- ROUTING
 const routes: RouteList = [
