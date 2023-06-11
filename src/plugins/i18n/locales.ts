@@ -40,6 +40,16 @@ const estonianLocale = {
     procession: 'Pulma Rongkäik',
     ourLocation: 'Meie Asukoht',
   },
+  agenda: {
+    title: 'Päevakord',
+    ceremony: 'Pulma tseremoonia',
+    botanicalGarnder: 'Botaanika Aed',
+    mhg: 'Miina Härma Gümnaasium',
+    etAgriMuseum: 'Eesti Põllumajandusmuuseum',
+    home: 'Kivimi',
+    shop: 'Märja Konsum',
+    final: 'Lasita Puhkemaja',
+  },
 };
 export const availableLocales: AvailableLocales = {
   et: estonianLocale,
@@ -61,6 +71,16 @@ export const availableLocales: AvailableLocales = {
       linksToMaps: 'Links to maps',
       procession: 'Wedding Procession',
       ourLocation: 'Our Location',
+    },
+    agenda: {
+      title: 'Agenda',
+      ceremony: 'Wedding ceremony',
+      botanicalGarnder: 'Botanical Garden',
+      mhg: 'Miina Härma Gymnasium',
+      etAgriMuseum: 'Estonian Agricultural Museum',
+      home: 'Kivimi',
+      shop: 'Märja Konsum',
+      final: 'Lasita Vacation House',
     },
   },
 };
