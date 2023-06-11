@@ -78,7 +78,7 @@ const torch = ref<HTMLDivElement>();
   width: 200px;
   height: 200px;
   box-shadow: 0 0 0 9999em #000000f7;
-  opacity: 1;
+  opacity: 0.9;
   border-radius: 50%;
   position: fixed;
   background: rgba(0, 0, 0, 0.3);

@@ -33,40 +33,79 @@
 
       <v-navigation-drawer v-model="showDrawer" temporary>
         <v-list-item
-          prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
-          title="John Leider"
+          prepend-avatar="https://avatars.githubusercontent.com/u/49920260?v=4"
+          title="Ryan Kruberg"
+          href="#/ryan"
+        ></v-list-item>
+        <v-list-item
+          prepend-avatar="https://media.licdn.com/dms/image/C4E03AQFTWNoK8uYYEw/profile-displayphoto-shrink_800_800/0/1627893179332?e=2147483647&v=beta&t=R1xpYiZE35TsgB2h9YSGzCzC4D8GCm3vWbiJCdrjnEM"
+          title="Marion Murulo"
+          href="#/marion"
         ></v-list-item>
 
-        <v-divider></v-divider>
+        <v-divider class="border-opacity-75"></v-divider>
 
         <v-list density="compact" nav>
-          <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></v-list-item>
-          <v-list-item prepend-icon="mdi-forum" title="About" value="about"></v-list-item>
+          <template v-for="route in routes" :key="route.route">
+            <v-list-item
+              v-if="route.type === 'nav'"
+              :key="route.route"
+              :prepend-icon="route.icon"
+              :title="t(route.translateKey)"
+              :href="`#${route.route}`"
+            ></v-list-item>
+            <v-divider v-if="route.type === 'divider'" class="border-opacity-75"></v-divider>
+          </template>
         </v-list>
       </v-navigation-drawer>
-      <v-main><component :is="currentView" /></v-main>
+      <v-main><component class="w-full h-full overflow-auto" :is="currentView.component" /></v-main>
     </v-layout>
   </v-card>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import ViewNotFound from './views/404.vue';
-import ViewIndex from './views/index.vue';
-import ViewMap from './views/map.vue';
 import { onMounted } from 'vue';
-import type { Component } from 'vue';
 import { localeMetaInfo, type SupportedLocale } from './plugins/i18n/locales';
 import { Icon } from '@iconify/vue';
+import { useI18n } from 'vue-i18n';
+import type { RouteList, SimpleRoute, ViewableRoute } from './_types/routes';
+import type { useI18nType } from './plugins/i18n/vue-i18n';
+import { View404, ViewIndex, ViewMaps, ViewMarion, ViewRyan } from './views';
 
-const routes: { [key: string]: Component } = {
-  '/': ViewIndex,
-  '/map': ViewMap,
-};
-const showDrawer = ref(false);
+const { t } = useI18n<useI18nType>();
+
+// --- ROUTING
+const routes: RouteList = [
+  { type: 'nav', route: '/', component: ViewIndex, icon: 'mdi-home', translateKey: 'titles.home' },
+  {
+    type: 'nav',
+    route: '/maps',
+    component: ViewMaps,
+    icon: 'mdi-map-outline',
+    translateKey: 'titles.maps',
+  },
+  { type: 'simple', route: '/ryan', component: ViewRyan },
+  { type: 'simple', route: '/marion', component: ViewMarion },
+  { type: 'divider' },
+];
 const currentPath = ref(window.location.hash);
 
-const currentView = computed(() => routes[currentPath.value.slice(1) || '/'] || ViewNotFound);
+const currentView = computed(() => {
+  const currentRoute = currentPath.value.slice(1) || '/';
+  const routeIndex = routes.findIndex((value) => {
+    if (value.type === 'divider') return false;
+    return value.route === currentRoute;
+  });
+  if (routeIndex < 0) {
+    const notFound: Pick<SimpleRoute, 'component'> = { component: View404 };
+    return notFound;
+  }
+  return routes[routeIndex] as ViewableRoute;
+});
+// ---
+
+const showDrawer = ref(false);
 
 onMounted(() => {
   window.addEventListener('hashchange', () => {
