@@ -8,6 +8,7 @@ import { et, en } from 'vuetify/locale';
 
 export type SupportedLocale = 'et' | 'en';
 export interface LocaleMetaInfo {
+  short: string;
   label: string;
   icon: string;
 }
@@ -17,8 +18,8 @@ export type AllMessageSchemaKeys = DeepKeyOf<MessageSchema>;
 export type AvailableLocales = Record<SupportedLocale, MessageSchema>;
 
 export const localeMetaInfo: LocaleMetaInfos = {
-  en: { label: 'English', icon: 'twemoji:flag-united-kingdom' },
-  et: { label: 'Eesti', icon: 'twemoji:flag-estonia' },
+  en: { label: 'English', icon: 'twemoji:flag-united-kingdom', short: 'EN' },
+  et: { label: 'Eesti', icon: 'twemoji:flag-estonia', short: 'ET' },
 };
 
 const estonianLocale = {
