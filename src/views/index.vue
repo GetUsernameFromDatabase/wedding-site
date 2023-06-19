@@ -5,8 +5,10 @@
       :iframe-src="weddingInfo?.embedWeddingProcession ?? ''"
     ></WeddingProcession>
 
-    <v-card :title="t('agenda.title')"
-      ><v-list density="compact">
+    <v-divider class="m-2"></v-divider>
+
+    <v-card :title="t('agenda.title')" color="primary"
+      ><v-list density="compact" bg-color="secondary">
         <v-list-item
           v-for="(item, i) in agenda"
           :key="i"
