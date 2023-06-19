@@ -40,14 +40,14 @@
 
       <v-navigation-drawer v-model="showDrawer" temporary>
         <v-list-item
-          prepend-avatar="https://avatars.githubusercontent.com/u/49920260?v=4"
-          :title="people.ryan.name.value"
-          href="#/ryan"
+          :prepend-avatar="people.ryan.value.avatar"
+          :title="people.ryan.value.name"
+          :href="people.ryan.value.href"
         ></v-list-item>
         <v-list-item
-          prepend-avatar="https://media.licdn.com/dms/image/C4E03AQFTWNoK8uYYEw/profile-displayphoto-shrink_800_800/0/1627893179332?e=2147483647&v=beta&t=R1xpYiZE35TsgB2h9YSGzCzC4D8GCm3vWbiJCdrjnEM"
-          :title="people.marion.name"
-          href="#/marion"
+          :prepend-avatar="people.marion.value.avatar"
+          :title="people.marion.value.name"
+          :href="people.marion.value.href"
         ></v-list-item>
 
         <v-divider class="border-opacity-75"></v-divider>
