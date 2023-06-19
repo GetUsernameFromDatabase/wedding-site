@@ -91,8 +91,11 @@ import type { useI18nType } from './plugins/i18n/vue-i18n';
 import { View404, ViewIndex, ViewMaps, ViewMarion, ViewRyan } from './views';
 import { useMainStore } from './stores/main';
 import { weddingCeremonyDate } from './info/dates';
+import { useTheme } from 'vuetify';
+import { marionTheme, myMainTheme, ryanTheme } from './plugins/vuetify/themes';
 
 const { t } = useI18n<useI18nType>();
+const theme = useTheme();
 const store = useMainStore();
 
 // --- ROUTING
@@ -136,6 +139,13 @@ const showDrawer = ref(false);
 onMounted(() => {
   window.addEventListener('hashchange', () => {
     currentPath.value = window.location.hash;
+    if (currentPath.value.includes('ryan')) {
+      theme.global.name.value = ryanTheme.name;
+    } else if (currentPath.value.includes('marion')) {
+      theme.global.name.value = marionTheme.name;
+    } else {
+      theme.global.name.value = myMainTheme.name;
+    }
   });
 });
 
