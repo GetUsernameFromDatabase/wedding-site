@@ -10,6 +10,10 @@
 
     <v-card class="mx-auto" :title="t('maps.linksToMaps')" color="primary">
       <v-list bg-color="secondary">
+        <v-list-item :href="weddingInfo?.weddingProcession" target="_blank"
+          ><template v-slot:prepend> <v-icon icon="mdi-ring"></v-icon> </template
+          >{{ t('maps.procession') }}</v-list-item
+        >
         <v-list-item :href="weddingInfo?.ourLocation" target="_blank"
           ><template v-slot:prepend> <v-icon icon="mdi-clock"></v-icon> </template
           >{{ t('maps.ourLocation') }}</v-list-item
