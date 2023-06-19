@@ -66,7 +66,7 @@ const agenda: AgendaItem[] = [
   },
   {
     text: 'agenda.final',
-    icon: 'mdi-bed',
+    icon: 'mdi-glass-flute',
     href: 'https://www.facebook.com/people/Lasita-Puhkemaja-O%C3%9C/100063769771377/',
   },
 ];
