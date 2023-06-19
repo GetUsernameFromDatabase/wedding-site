@@ -22,10 +22,28 @@
           </template>
         </v-list-item> </v-list
     ></v-card>
+
+    <v-divider class="m-2"></v-divider>
+
+    <v-container fluid>
+      <v-row>
+        <v-col class="pa-2 ma-2">
+          <v-theme-provider theme="marion">
+            <shortDescriptionVue person="marion"></shortDescriptionVue>
+          </v-theme-provider>
+        </v-col>
+        <v-col class="pa-2 ma-2">
+          <v-theme-provider theme="ryan">
+            <shortDescriptionVue person="ryan"></shortDescriptionVue>
+          </v-theme-provider>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 <script setup lang="ts">
 import type { AgendaItem } from '@/_types/agenda';
+import shortDescriptionVue from '@/components/person/short-description.vue';
 import WeddingProcession from '@/components/wedding-procession.vue';
 import { useWeddingInfo } from '@/composables/wedding-info';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
