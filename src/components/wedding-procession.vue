@@ -1,0 +1,42 @@
+<template>
+  <v-expansion-panels multiple v-model="panels">
+    <v-expansion-panel bg-color="primary">
+      <v-expansion-panel-title
+        ><div class="flex justify-center w-full">
+          {{ t('maps.procession') }}
+        </div></v-expansion-panel-title
+      >
+      <v-expansion-panel-text
+        ><v-btn ripple variant="tonal" :href="directLink" target="_blank" class="mb-2">{{
+          t('message.directLink')
+        }}</v-btn>
+        <iframe
+          ref="weddingProcession"
+          class="w-full h-[60vh]"
+          :src="iframeSrc"
+          style="border: 0"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe
+      ></v-expansion-panel-text>
+    </v-expansion-panel>
+  </v-expansion-panels>
+</template>
+
+<script setup lang="ts">
+import type { useI18nType } from '@/plugins/i18n/vue-i18n';
+import { useI18n } from 'vue-i18n';
+import { ref } from 'vue';
+
+const { t } = useI18n<useI18nType>();
+
+interface Properties {
+  iframeSrc: string;
+  directLink: string;
+  expanded: boolean;
+}
+const properties = withDefaults(defineProps<Properties>(), { expanded: false });
+
+const panels = ref<number[]>(properties.expanded ? [0] : []);
+</script>

@@ -2,27 +2,34 @@
   <v-app>
     <v-card class="w-full h-full">
       <v-layout class="w-full h-full">
-        <v-app-bar :elevation="2"
+        <v-app-bar :elevation="2" color="primary"
           ><template v-slot:prepend>
             <v-app-bar-nav-icon @click="showDrawer = !showDrawer"></v-app-bar-nav-icon> </template
-          ><template v-slot:append
-            ><div class="flex flex-row">
+          ><v-toolbar-title class="text-center">
+            <v-img src="/marion-ryan-logo.png" max-height="58"></v-img> </v-toolbar-title
+          ><template v-slot:append>
+            <div class="flex flex-row">
               <v-select
                 v-model="$i18n.locale"
                 :items="$i18n.availableLocales"
                 variant="solo"
                 hide-details="auto"
                 density="compact"
+                bg-color="secondary"
                 ><template v-slot:selection="{ item }">
                   <div class="flex items-center">
                     <Icon :icon="getLocaleMetaInfo(item.value).icon" class="mr-1"></Icon>
-                    <span>{{ getLocaleMetaInfo(item.value).label }}</span>
+                    <span>{{ getLocaleMetaInfo(item.value).short }}</span>
                   </div>
                 </template>
                 <template v-slot:item="{ item }">
                   <v-list-item @click="$i18n.locale = item.value">
                     <v-list-item-title class="flex items-center"
-                      ><Icon :icon="getLocaleMetaInfo(item.value).icon" class="mr-1"></Icon
+                      ><Icon
+                        :icon="getLocaleMetaInfo(item.value).icon"
+                        class="mr-1"
+                        :title="getLocaleMetaInfo(item.value).label"
+                      ></Icon
                       >{{ getLocaleMetaInfo(item.value).label }}</v-list-item-title
                     >
                   </v-list-item>
@@ -61,7 +68,7 @@
         </v-navigation-drawer>
 
         <v-main
-          ><component class="w-full h-full overflow-auto py-4" :is="currentView.component"
+          ><component class="w-full h-full overflow-auto py-4 px-6" :is="currentView.component"
         /></v-main>
       </v-layout>
     </v-card>

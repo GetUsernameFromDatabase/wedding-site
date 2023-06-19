@@ -1,6 +1,11 @@
 <template>
   <div>
-    <v-card :title="t('agenda.title')" class="mx-5"
+    <WeddingProcession
+      :direct-link="weddingInfo?.weddingProcession ?? ''"
+      :iframe-src="weddingInfo?.embedWeddingProcession ?? ''"
+    ></WeddingProcession>
+
+    <v-card :title="t('agenda.title')"
       ><v-list density="compact">
         <v-list-item
           v-for="(item, i) in agenda"
@@ -19,10 +24,13 @@
 </template>
 <script setup lang="ts">
 import type { AgendaItem } from '@/_types/agenda';
+import WeddingProcession from '@/components/wedding-procession.vue';
+import { useWeddingInfo } from '@/composables/wedding-info';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n<useI18nType>();
+const { info: weddingInfo } = useWeddingInfo();
 
 const agenda: AgendaItem[] = [
   {
