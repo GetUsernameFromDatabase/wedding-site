@@ -41,12 +41,12 @@
       <v-navigation-drawer v-model="showDrawer" temporary>
         <v-list-item
           prepend-avatar="https://avatars.githubusercontent.com/u/49920260?v=4"
-          :title="store.dateNow.isBefore(weddingCeremonyDate) ? 'Ryan Kruberg' : 'Ryan Murulo'"
+          :title="people.ryan.name.value"
           href="#/ryan"
         ></v-list-item>
         <v-list-item
           prepend-avatar="https://media.licdn.com/dms/image/C4E03AQFTWNoK8uYYEw/profile-displayphoto-shrink_800_800/0/1627893179332?e=2147483647&v=beta&t=R1xpYiZE35TsgB2h9YSGzCzC4D8GCm3vWbiJCdrjnEM"
-          title="Marion Murulo"
+          :title="people.marion.name"
           href="#/marion"
         ></v-list-item>
 
@@ -89,15 +89,14 @@ import { useI18n } from 'vue-i18n';
 import type { RouteList, SimpleRoute, ViewableRoute } from './_types/routes';
 import type { useI18nType } from './plugins/i18n/vue-i18n';
 import { View404, ViewIndex, ViewMaps, ViewMarion, ViewRyan } from './views';
-import { useMainStore } from './stores/main';
-import { weddingCeremonyDate } from './info/dates';
 import { useTheme } from 'vuetify';
 import { marionTheme, myMainTheme, ryanTheme } from './plugins/vuetify/themes';
+import { usePeople } from './composables/people';
 
 const { t } = useI18n<useI18nType>();
 const theme = useTheme();
-const store = useMainStore();
 
+const people = usePeople();
 // --- ROUTING
 const routes: RouteList = [
   {
