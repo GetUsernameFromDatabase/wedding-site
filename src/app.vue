@@ -5,7 +5,12 @@
         ><template v-slot:prepend>
           <v-app-bar-nav-icon @click="showDrawer = !showDrawer"></v-app-bar-nav-icon> </template
         ><v-toolbar-title class="text-center">
-          <v-img src="/wedding-site/marion-ryan-logo.png" max-height="58"></v-img> </v-toolbar-title
+          <v-img
+            src="/wedding-site/marion-ryan-logo.png"
+            max-height="56"
+            aspect-ratio="16/9"
+            :height="64"
+          ></v-img> </v-toolbar-title
         ><template v-slot:append>
           <div class="flex flex-row">
             <v-select
