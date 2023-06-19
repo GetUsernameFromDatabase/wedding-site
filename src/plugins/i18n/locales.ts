@@ -31,6 +31,7 @@ const estonianLocale = {
   navigation: {
     maps: 'Kaardid',
     home: 'Koduleht',
+    explore: 'Uuri Rohkem',
   },
   c404: {
     ohno: 'Oh, issand',
@@ -51,6 +52,14 @@ const estonianLocale = {
     shop: 'Märja Konsum',
     final: 'Lasita Puhkemaja',
   },
+  ryan: {
+    description: 'Endast rääkida ei meeldi. Lihtsalt teen asju.',
+    profession: 'Programmeerija',
+  },
+  marion: {
+    description: 'WIP',
+    profession: 'Graafiline Disainer',
+  },
 };
 export const availableLocales: AvailableLocales = {
   et: estonianLocale,
@@ -63,6 +72,7 @@ export const availableLocales: AvailableLocales = {
     navigation: {
       maps: 'Maps',
       home: 'Home',
+      explore: 'Learn More',
     },
     c404: {
       ohno: 'Uh, Ohh',
@@ -82,6 +92,14 @@ export const availableLocales: AvailableLocales = {
       home: 'Kivimi',
       shop: 'Märja Konsum',
       final: 'Lasita Vacation House',
+    },
+    ryan: {
+      description: "Don't like to talk about myself much. I just do stuff.",
+      profession: 'Programmer',
+    },
+    marion: {
+      description: 'WIP',
+      profession: 'Graphical Designer',
     },
   },
 };
