@@ -46,13 +46,9 @@
         ><component class="w-full h-full py-4 px-6" :is="currentView.component"
       /></v-main>
     </v-layout>
-
-    <!-- Honestly, I don't see the point in a footer -->
-    <!-- <v-footer class="bg-grey-lighten-1">
-      <v-row justify="center" no-gutters>
-        {{ store.dateNow.toDate().toLocaleTimeString() }}
-      </v-row>
-    </v-footer> -->
+    <v-footer color="primary">
+      <v-row justify="center" no-gutters> WIP: CONTACT INFO </v-row>
+    </v-footer>
   </v-app>
 </template>
 
