@@ -42,8 +42,8 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-main
-        ><component class="w-full h-full overflow-auto py-4 px-6" :is="currentView.component"
+      <v-main class="w-full h-full overflow-auto"
+        ><component class="w-full h-full py-4 px-6" :is="currentView.component"
       /></v-main>
     </v-layout>
 
