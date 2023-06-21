@@ -6,6 +6,7 @@
     hide-details="auto"
     density="compact"
     bg-color="secondary"
+    flat
     ><template v-slot:selection="{ item }">
       <div class="flex items-center">
         <Icon :icon="getLocaleMetaInfo(item.value).icon" class="mr-1"></Icon>
