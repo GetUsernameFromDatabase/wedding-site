@@ -11,37 +11,8 @@
             aspect-ratio="16/9"
             :height="64"
           ></v-img> </v-toolbar-title
-        ><template v-slot:append>
-          <div class="flex flex-row">
-            <v-select
-              v-model="$i18n.locale"
-              :items="$i18n.availableLocales"
-              variant="solo"
-              hide-details="auto"
-              density="compact"
-              bg-color="secondary"
-              ><template v-slot:selection="{ item }">
-                <div class="flex items-center">
-                  <Icon :icon="getLocaleMetaInfo(item.value).icon" class="mr-1"></Icon>
-                  <span>{{ getLocaleMetaInfo(item.value).short }}</span>
-                </div>
-              </template>
-              <template v-slot:item="{ item }">
-                <v-list-item @click="$i18n.locale = item.value">
-                  <v-list-item-title class="flex items-center"
-                    ><Icon
-                      :icon="getLocaleMetaInfo(item.value).icon"
-                      class="mr-1"
-                      :title="getLocaleMetaInfo(item.value).label"
-                    ></Icon
-                    >{{ getLocaleMetaInfo(item.value).label }}</v-list-item-title
-                  >
-                </v-list-item>
-              </template></v-select
-            >
-          </div></template
-        ></v-app-bar
-      >
+        ><template v-slot:append> <LanguageSelect></LanguageSelect></template
+      ></v-app-bar>
 
       <v-navigation-drawer v-model="showDrawer" temporary>
         <v-list-item
@@ -88,8 +59,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { onMounted } from 'vue';
-import { localeMetaInfo, type SupportedLocale } from './plugins/i18n/locales';
-import { Icon } from '@iconify/vue';
 import { useI18n } from 'vue-i18n';
 import type { RouteList, SimpleRoute, ViewableRoute } from './_types/routes';
 import type { useI18nType } from './plugins/i18n/vue-i18n';
@@ -99,6 +68,7 @@ import { marionTheme, myMainTheme, ryanTheme } from './plugins/vuetify/themes';
 import { usePeople } from './composables/people';
 import { useTitle } from '@vueuse/core';
 import { watch } from 'vue';
+import LanguageSelect from './components/language-select.vue';
 
 const { t, locale } = useI18n<useI18nType>();
 const theme = useTheme();
