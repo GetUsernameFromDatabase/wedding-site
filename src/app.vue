@@ -97,8 +97,10 @@ import { View404, ViewIndex, ViewMaps, ViewMarion, ViewRyan } from './views';
 import { useTheme } from 'vuetify';
 import { marionTheme, myMainTheme, ryanTheme } from './plugins/vuetify/themes';
 import { usePeople } from './composables/people';
+import { useTitle } from '@vueuse/core';
+import { watch } from 'vue';
 
-const { t } = useI18n<useI18nType>();
+const { t, locale } = useI18n<useI18nType>();
 const theme = useTheme();
 
 const people = usePeople();
@@ -153,9 +155,13 @@ onMounted(() => {
   });
 });
 
-function getLocaleMetaInfo(locale: SupportedLocale & (string & {})) {
-  return localeMetaInfo[locale];
-}
+watch(
+  locale,
+  () => {
+    useTitle(t('meta.title'));
+  },
+  { immediate: true },
+);
 </script>
 
 <style>
