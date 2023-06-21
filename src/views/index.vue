@@ -76,6 +76,7 @@ const agenda: AgendaItem[] = [
   {
     text: 'agenda.home',
     icon: 'mdi-grass',
+    href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
   },
   {
     text: 'agenda.shop',
