@@ -109,16 +109,7 @@ const currentView = computed(() => {
 const showDrawer = ref(false);
 
 onMounted(() => {
-  window.addEventListener('hashchange', () => {
-    currentPath.value = window.location.hash;
-    if (currentPath.value.includes('ryan')) {
-      theme.global.name.value = ryanTheme.name;
-    } else if (currentPath.value.includes('marion')) {
-      theme.global.name.value = marionTheme.name;
-    } else {
-      theme.global.name.value = myMainTheme.name;
-    }
-  });
+  window.addEventListener('hashchange', changeThemeAccordingToPath);
 });
 
 watch(
@@ -128,6 +119,17 @@ watch(
   },
   { immediate: true },
 );
+
+function changeThemeAccordingToPath() {
+  currentPath.value = window.location.hash;
+  if (currentPath.value.includes('ryan')) {
+    theme.global.name.value = ryanTheme.name;
+  } else if (currentPath.value.includes('marion')) {
+    theme.global.name.value = marionTheme.name;
+  } else {
+    theme.global.name.value = myMainTheme.name;
+  }
+}
 </script>
 
 <style>
