@@ -40,4 +40,7 @@ function getLocaleMetaInfo(locale: SupportedLocale & (string & {})) {
 :deep(.v-field.v-field--appended) {
   --v-field-padding-end: 0;
 }
+:deep(.v-field--variant-plain.v-field, .v-field--variant-underlined.v-field) {
+  --v-field-padding-top: 0;
+}
 </style>
