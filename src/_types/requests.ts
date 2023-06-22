@@ -1,4 +1,4 @@
-export interface CsvWeddingInfoRow extends Array<string> {
+export interface MapLinksCSV extends Array<string> {
   /**
    * NAME
    */
@@ -9,7 +9,7 @@ export interface CsvWeddingInfoRow extends Array<string> {
   1: string;
 }
 
-export interface ParsedWeddingInfo {
+export interface MapLinksParsed {
   ourLocation: string;
   weddingProcession: string;
   embedWeddingProcession: string;
