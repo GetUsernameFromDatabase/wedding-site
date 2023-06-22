@@ -1,10 +1,10 @@
 export interface CsvWeddingInfoRow extends Array<string> {
   /**
-   * Header
+   * NAME
    */
   0: string;
   /**
-   * Value
+   * VALUE
    */
   1: string;
 }
