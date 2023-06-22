@@ -109,6 +109,7 @@ const currentView = computed(() => {
 const showDrawer = ref(false);
 
 onMounted(() => {
+  changeThemeAccordingToPath();
   window.addEventListener('hashchange', changeThemeAccordingToPath);
 });
 
