@@ -36,3 +36,9 @@ function getLocaleMetaInfo(locale: SupportedLocale & (string & {})) {
   return localeMetaInfo[locale];
 }
 </script>
+
+<style scoped>
+:deep(.v-field.v-field--appended) {
+  --v-field-padding-end: 0;
+}
+</style>
