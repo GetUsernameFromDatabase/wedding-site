@@ -2,10 +2,9 @@
   <v-select
     v-model="$i18n.locale"
     :items="$i18n.availableLocales"
-    variant="solo"
+    variant="plain"
     hide-details="auto"
     density="compact"
-    bg-color="secondary"
     flat
     ><template v-slot:selection="{ item }">
       <div class="flex items-center">
