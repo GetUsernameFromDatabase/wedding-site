@@ -11,12 +11,15 @@
           ><v-btn
             ripple
             variant="tonal"
-            :href="mapLinks.weddingProcession"
+            :href="mapLinks.weddingProcession.LINK"
             target="_blank"
             class="mb-2"
             >{{ t('message.directLink') }}</v-btn
           >
-          <google-maps :src="mapLinks.embedWeddingProcession" class="w-full h-[60vh]"></google-maps
+          <google-maps
+            :src="mapLinks.embedWeddingProcession.LINK"
+            class="w-full h-[60vh]"
+          ></google-maps
         ></v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>

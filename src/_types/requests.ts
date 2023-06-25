@@ -1,16 +1,16 @@
-export interface MapLinksCSV extends Array<string> {
+export interface MapLinkCsvRow {
   /**
-   * NAME
+   * Name of the link, KEY
    */
-  0: string;
+  NAME: string;
   /**
-   * VALUE
+   * Link to the url
    */
-  1: string;
+  LINK: string;
 }
 
 export interface MapLinksParsed {
-  ourLocation: string;
-  weddingProcession: string;
-  embedWeddingProcession: string;
+  ourLocation: MapLinkCsvRow;
+  weddingProcession: MapLinkCsvRow;
+  embedWeddingProcession: MapLinkCsvRow;
 }

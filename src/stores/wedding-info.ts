@@ -1,6 +1,7 @@
-import type { MapLinksCSV, MapLinksParsed } from '@/_types/requests';
+import type { MapLinksParsed } from '@/_types/requests';
 import axios from 'axios';
 import { defineStore } from 'pinia';
+import { parse } from 'csv-parse/browser/esm/sync';
 
 const infoSourceURLs = {
   mapLinks:
@@ -20,19 +21,13 @@ export const useWeddingInfo = () => {
     actions: {
       async updateMapLinks() {
         const response = await axios.get<string>(infoSourceURLs.mapLinks);
+        const parsedResponse: MapLinksParsed = parse(response.data, {
+          columns: true,
+          objname: 'NAME',
+        });
 
-        const result: { [header: string]: string } = {};
-        const infoRows = response.data.split(/\r\n|\r|\n/);
-        for (const row of infoRows) {
-          const rowSplit = row.split(',') as MapLinksCSV;
-          const key = rowSplit[0];
-          const value = rowSplit[1];
-          result[key] = value;
-        }
-
-        console.info('Updated wedding info', result);
-        const mapLinks = result as unknown as MapLinksParsed;
-        this.mapLinks = mapLinks;
+        console.log('Map Links', parsedResponse);
+        this.mapLinks = parsedResponse;
       },
       async initiate() {
         if (this.isInitiated) return;
