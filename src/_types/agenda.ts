@@ -4,4 +4,5 @@ export interface AgendaItem {
   text: AllMessageSchemaKeys;
   icon: string;
   href?: string;
+  slidePictures?: string[];
 }
