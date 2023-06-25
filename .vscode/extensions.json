@@ -1,5 +1,12 @@
 {
   "recommendations": [
-    "vue.vscode-typescript-vue-plugin"
+    "vue.vscode-typescript-vue-plugin",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "vue.volar",
+    "dbaeumer.vscode-eslint",
+    "christian-kohler.path-intellisense",
+    "christian-kohler.npm-intellisense",
+    "bradlc.vscode-tailwindcss"
   ]
 }
