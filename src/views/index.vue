@@ -1,8 +1,8 @@
 <template>
   <div>
     <WeddingProcession
-      :direct-link="weddingInfo?.weddingProcession ?? ''"
-      :iframe-src="weddingInfo?.embedWeddingProcession ?? ''"
+      :direct-link="mapLinks.weddingProcession ?? ''"
+      :iframe-src="mapLinks.embedWeddingProcession ?? ''"
     ></WeddingProcession>
 
     <v-divider class="m-2"></v-divider>
@@ -63,12 +63,12 @@
 import type { AgendaItem } from '@/_types/agenda';
 import shortDescriptionVue from '@/components/person/short-description.vue';
 import WeddingProcession from '@/components/wedding-procession.vue';
-import { useWeddingInfo } from '@/composables/wedding-info';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
+import { useWeddingInfo } from '@/stores/wedding-info';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n<useI18nType>();
-const { info: weddingInfo } = useWeddingInfo();
+const { mapLinks } = useWeddingInfo();
 
 const agenda: AgendaItem[] = [
   {
