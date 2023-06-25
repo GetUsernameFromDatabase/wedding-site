@@ -8,19 +8,20 @@
     <v-divider class="m-2"></v-divider>
 
     <v-card :title="t('agenda.title')" color="primary"
-      ><v-list density="compact" bg-color="secondary">
-        <v-list-item
-          v-for="(item, i) in agenda"
-          :key="i"
-          :value="item"
-          :title="t(item.text)"
-          :href="item.href"
-          target="_blank"
-        >
-          <template v-slot:prepend>
-            <v-icon :icon="item.icon"></v-icon>
-          </template>
-        </v-list-item> </v-list
+      ><v-card-text>
+        <v-list density="compact" bg-color="secondary">
+          <v-list-item
+            v-for="(item, i) in agenda"
+            :key="i"
+            :value="item"
+            :title="t(item.text)"
+            :href="item.href"
+            target="_blank"
+          >
+            <template v-slot:prepend>
+              <v-icon :icon="item.icon"></v-icon>
+            </template>
+          </v-list-item> </v-list></v-card-text
     ></v-card>
 
     <v-divider class="m-2"></v-divider>
