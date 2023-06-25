@@ -34,10 +34,12 @@ export const useWeddingInfo = () => {
         const mapLinks = result as unknown as MapLinksParsed;
         this.mapLinks = mapLinks;
       },
-      initiate() {
-        if (this.isInitiated) return Promise.resolve();
+      async initiate() {
+        if (this.isInitiated) return;
         const promises = [this.updateMapLinks()];
-        return Promise.all(promises);
+        const resolvedPromises = await Promise.all(promises);
+        this.isInitiated = true;
+        return resolvedPromises;
       },
     },
   })();

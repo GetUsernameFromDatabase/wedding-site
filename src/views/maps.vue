@@ -27,8 +27,9 @@ import type { useI18nType } from '../plugins/i18n/vue-i18n';
 import { useI18n } from 'vue-i18n';
 import WeddingProcession from '@/components/wedding-procession.vue';
 import { useWeddingInfo } from '@/stores/wedding-info';
+import { storeToRefs } from 'pinia';
 
 const { t } = useI18n<useI18nType>();
 
-const { mapLinks } = useWeddingInfo();
+const { mapLinks } = storeToRefs(useWeddingInfo());
 </script>
