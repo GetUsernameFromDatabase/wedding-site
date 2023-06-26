@@ -14,3 +14,9 @@ export interface MapLinksParsed {
   weddingProcession: MapLinkHeaders;
   embedWeddingProcession: MapLinkHeaders;
 }
+
+export interface SongCategoryHeaders {
+  'SONG-CATEGORY': string;
+  'ET-TRANSLATION': string;
+  'EN-TRANSLATION': string;
+}

@@ -1,4 +1,4 @@
-import type { MapLinksParsed } from '@/_types/requests';
+import type { MapLinksParsed, SongCategoryHeaders } from '@/_types/requests';
 import axios from 'axios';
 import { defineStore } from 'pinia';
 import { parse } from 'csv-parse/browser/esm/sync';
@@ -16,6 +16,7 @@ export const useWeddingInfo = () => {
   const store = defineStore('wedding-info', {
     state: () => ({
       mapLinks: {} as MapLinksParsed,
+      songCategories: [] as SongCategoryHeaders[],
       isInitiated: false,
     }),
     actions: {
@@ -29,9 +30,18 @@ export const useWeddingInfo = () => {
         console.log('Map Links', parsedResponse);
         this.mapLinks = parsedResponse;
       },
+      async updateSongCategories() {
+        const response = await axios.get<string>(infoSourceURLs.songCategories);
+        const parsedResponse: SongCategoryHeaders[] = parse(response.data, {
+          columns: true,
+        });
+
+        console.log('Song Categories', parsedResponse);
+        this.songCategories = parsedResponse;
+      },
       async initiate() {
         if (this.isInitiated) return;
-        const promises = [this.updateMapLinks()];
+        const promises = [this.updateMapLinks(), this.updateSongCategories()];
         const resolvedPromises = await Promise.all(promises);
         this.isInitiated = true;
         return resolvedPromises;
