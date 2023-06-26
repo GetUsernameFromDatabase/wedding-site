@@ -1,4 +1,4 @@
-export interface MapLinkCsvRow {
+export interface MapLinkHeaders {
   /**
    * Name of the link, KEY
    */
@@ -10,7 +10,7 @@ export interface MapLinkCsvRow {
 }
 
 export interface MapLinksParsed {
-  ourLocation: MapLinkCsvRow;
-  weddingProcession: MapLinkCsvRow;
-  embedWeddingProcession: MapLinkCsvRow;
+  ourLocation: MapLinkHeaders;
+  weddingProcession: MapLinkHeaders;
+  embedWeddingProcession: MapLinkHeaders;
 }
