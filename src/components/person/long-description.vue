@@ -1,14 +1,21 @@
 <template>
-  <v-card class="mx-auto flex flex-col sm:flex-row" color="secondary">
-    <div><v-img :src="personInfo.avatar" width="100%" class="rounded-md"></v-img></div>
-
-    <div>
-      <v-card-title> {{ personInfo.name }} </v-card-title>
-      <v-card-subtitle> {{ personInfo.subtitle }} </v-card-subtitle>
-      <v-card-text>
-        {{ personInfo.description }}
-      </v-card-text>
-    </div>
+  <v-card class="rounded-md" color="secondary">
+    <v-row no-gutters>
+      <v-col sm="4">
+        <v-img
+          :src="personInfo.avatar"
+          class="rounded-md mx-auto"
+          max-height="384"
+          width="384"
+        ></v-img> </v-col
+      ><v-col>
+        <v-card-title> {{ personInfo.name }} </v-card-title>
+        <v-card-subtitle> {{ personInfo.subtitle }} </v-card-subtitle>
+        <v-card-text>
+          {{ personInfo.description }}
+        </v-card-text>
+      </v-col></v-row
+    >
   </v-card>
 </template>
 
