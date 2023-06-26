@@ -27,26 +27,26 @@ export const useWeddingInfo = () => {
     }),
     actions: {
       async updateMapLinks() {
-        const parsedResponse = await csvFetch<MapLinksParsed>(csvSources.mapLinks, {
+        const parsedCSV = await csvFetch<MapLinksParsed>(csvSources.mapLinks, {
           columns: true,
           objname: 'NAME',
         });
-        console.info(`[${this.$id}] mapLinks:`, parsedResponse);
-        this.mapLinks = parsedResponse;
+        console.info(`[${this.$id}] mapLinks:`, parsedCSV);
+        this.mapLinks = parsedCSV;
       },
       async updateSongCategories() {
-        const parsedResponse = await csvFetch<SongCategoryHeaders[]>(csvSources.songCategories, {
+        const parsedCSV = await csvFetch<SongCategoryHeaders[]>(csvSources.songCategories, {
           columns: true,
         });
-        console.info(`[${this.$id}] songCategories:`, parsedResponse);
-        this.songCategories = parsedResponse;
+        console.info(`[${this.$id}] songCategories:`, parsedCSV);
+        this.songCategories = parsedCSV;
       },
       async updateSongs() {
-        const parsedResponse = await csvFetch<SongHeaders[]>(csvSources.songs, {
+        const parsedCSV = await csvFetch<SongHeaders[]>(csvSources.songs, {
           columns: true,
         });
-        console.info(`[${this.$id}] songs:`, parsedResponse);
-        this.songs = parsedResponse;
+        console.info(`[${this.$id}] songs:`, parsedCSV);
+        this.songs = parsedCSV;
       },
       async initiate() {
         if (this.isInitiated) return;
