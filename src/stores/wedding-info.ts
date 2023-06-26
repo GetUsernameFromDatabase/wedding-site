@@ -28,7 +28,7 @@ export const useWeddingInfo = () => {
           objname: 'NAME',
         });
 
-        console.log('Map Links', parsedResponse);
+        console.info(`[${this.$id}] mapLinks:`, parsedResponse);
         this.mapLinks = parsedResponse;
       },
       async updateSongCategories() {
@@ -37,7 +37,7 @@ export const useWeddingInfo = () => {
           columns: true,
         });
 
-        console.log('Song Categories', parsedResponse);
+        console.info(`[${this.$id}] songCategories:`, parsedResponse);
         this.songCategories = parsedResponse;
       },
       async updateSongs() {
@@ -46,7 +46,7 @@ export const useWeddingInfo = () => {
           columns: true,
         });
 
-        console.log('Songs', parsedResponse);
+        console.info(`[${this.$id}] songs:`, parsedResponse);
         this.songs = parsedResponse;
       },
       async initiate() {
