@@ -5,7 +5,7 @@
     <v-divider class="m-2"></v-divider>
 
     <v-card :title="t('agenda.title')" color="primary"
-      ><v-card-text class="flex">
+      ><v-card-text class="flex flex-col md:flex-row">
         <v-list density="compact" bg-color="secondary" class="min-w-[300px]">
           <v-list-item
             v-for="item in agenda"
