@@ -6,7 +6,7 @@
 
     <v-card :title="t('agenda.title')" color="primary"
       ><v-card-text class="flex">
-        <v-list density="compact" bg-color="secondary" class="w-fit" width="350">
+        <v-list density="compact" bg-color="secondary" class="min-w-[300px]">
           <v-list-item
             v-for="item in agenda"
             :key="item.text"
