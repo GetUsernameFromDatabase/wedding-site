@@ -19,7 +19,12 @@
             </template>
             <v-list-item-title class="whitespace-pre-wrap">{{ t(item.text) }}</v-list-item-title>
           </v-list-item> </v-list
-        ><v-carousel cycle height="400" hide-delimiter-background show-arrows="hover">
+        ><v-carousel
+          cycle
+          :height="mdOrGreater ? 480 : 320"
+          hide-delimiter-background
+          show-arrows="hover"
+        >
           <template v-for="item in agenda" :key="item.text"
             ><v-carousel-item v-for="slidePicture in item.slidePictures" :key="slidePicture">
               <v-card class="w-full h-full">
@@ -61,9 +66,13 @@ import type { AgendaItem } from '@/_types/agenda';
 import shortDescriptionVue from '@/components/person/short-description.vue';
 import WeddingProcession from '@/components/wedding-procession.vue';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n<useI18nType>();
+const breakpoints = useBreakpoints(breakpointsTailwind);
+
+const mdOrGreater = breakpoints.greaterOrEqual('md');
 
 const agenda: AgendaItem[] = [
   {
