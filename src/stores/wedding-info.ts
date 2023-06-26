@@ -27,24 +27,30 @@ export const useWeddingInfo = () => {
     }),
     actions: {
       async updateMapLinks() {
-        const parsedCSV = await csvFetch<MapLinksParsed>(csvSources.mapLinks, {
+        const csvParseOptions = {
           columns: true,
           objname: 'NAME',
-        });
+        };
+        const parsedCSV = await csvFetch<MapLinksParsed>(csvSources.mapLinks, csvParseOptions);
         console.info(`[${this.$id}] mapLinks:`, parsedCSV);
         this.mapLinks = parsedCSV;
       },
       async updateSongCategories() {
-        const parsedCSV = await csvFetch<SongCategoryHeaders[]>(csvSources.songCategories, {
+        const csvParseOptions = {
           columns: true,
-        });
+        };
+        const parsedCSV = await csvFetch<SongCategoryHeaders[]>(
+          csvSources.songCategories,
+          csvParseOptions,
+        );
         console.info(`[${this.$id}] songCategories:`, parsedCSV);
         this.songCategories = parsedCSV;
       },
       async updateSongs() {
-        const parsedCSV = await csvFetch<SongHeaders[]>(csvSources.songs, {
+        const csvParseOptions = {
           columns: true,
-        });
+        };
+        const parsedCSV = await csvFetch<SongHeaders[]>(csvSources.songs, csvParseOptions);
         console.info(`[${this.$id}] songs:`, parsedCSV);
         this.songs = parsedCSV;
       },
