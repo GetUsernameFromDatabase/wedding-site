@@ -1,6 +1,6 @@
 import type { MapLinksParsed, SongCategoryHeaders, SongHeaders } from '@/_types/requests';
 import axios from 'axios';
-import { defineStore } from 'pinia';
+import { defineStore, type Store } from 'pinia';
 import { parse, type Options } from 'csv-parse/browser/esm/sync';
 
 const csvSources = {
@@ -17,6 +17,16 @@ async function csvFetch<T>(url: string, parseOptions: Options = {}) {
   return parse(response.data, parseOptions) as T;
 }
 
+async function csvFetchAndLog<T>(
+  csvSourceKey: keyof typeof csvSources,
+  store: Store,
+  parseOptions: Options = {},
+) {
+  const parsedCSV = await csvFetch<T>(csvSources[csvSourceKey], parseOptions);
+  console.info(`[${store.$id}] ${csvSourceKey}:`, parsedCSV);
+  return parsedCSV;
+}
+
 export const useWeddingInfo = () => {
   const store = defineStore('wedding-info', {
     state: () => ({
@@ -31,27 +41,25 @@ export const useWeddingInfo = () => {
           columns: true,
           objname: 'NAME',
         };
-        const parsedCSV = await csvFetch<MapLinksParsed>(csvSources.mapLinks, csvParseOptions);
-        console.info(`[${this.$id}] mapLinks:`, parsedCSV);
+        const parsedCSV = await csvFetchAndLog<MapLinksParsed>('mapLinks', this, csvParseOptions);
         this.mapLinks = parsedCSV;
       },
       async updateSongCategories() {
         const csvParseOptions = {
           columns: true,
         };
-        const parsedCSV = await csvFetch<SongCategoryHeaders[]>(
-          csvSources.songCategories,
+        const parsedCSV = await csvFetchAndLog<SongCategoryHeaders[]>(
+          'songCategories',
+          this,
           csvParseOptions,
         );
-        console.info(`[${this.$id}] songCategories:`, parsedCSV);
         this.songCategories = parsedCSV;
       },
       async updateSongs() {
         const csvParseOptions = {
           columns: true,
         };
-        const parsedCSV = await csvFetch<SongHeaders[]>(csvSources.songs, csvParseOptions);
-        console.info(`[${this.$id}] songs:`, parsedCSV);
+        const parsedCSV = await csvFetchAndLog<SongHeaders[]>('songs', this, csvParseOptions);
         this.songs = parsedCSV;
       },
       async initiate() {
