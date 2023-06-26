@@ -47,7 +47,9 @@
       /></v-main>
     </v-layout>
     <v-footer color="primary">
-      <v-row justify="center" no-gutters> WIP: CONTACT INFO </v-row>
+      <v-row justify="center" no-gutters>{{
+        t('meta.footer', { person: 'Enn Tobre', phone: '55599608' })
+      }}</v-row>
     </v-footer>
   </v-app>
 </template>

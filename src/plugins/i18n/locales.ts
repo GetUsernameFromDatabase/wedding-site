@@ -24,7 +24,7 @@ export const localeMetaInfo: LocaleMetaInfos = {
 
 const estonianLocale = {
   $vuetify: et,
-  meta: { title: 'Pulm -- Marion & Ryan' },
+  meta: { title: 'Pulm -- Marion & Ryan', footer: 'Pulmaisa {person} - {phone}' },
   message: {
     devTestMessage: 'testimine',
     directLink: 'otselink',
@@ -66,7 +66,7 @@ export const availableLocales: AvailableLocales = {
   et: estonianLocale,
   en: {
     $vuetify: en,
-    meta: { title: 'Wedding -- Marion & Ryan' },
+    meta: { title: 'Wedding -- Marion & Ryan', footer: 'Wedding Father {person} - {phone}' },
     message: {
       devTestMessage: 'testing',
       directLink: 'direct link',
