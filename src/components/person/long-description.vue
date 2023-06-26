@@ -1,10 +1,10 @@
 <template>
   <v-card class="rounded-md" color="secondary">
     <v-row no-gutters>
-      <v-col sm="4">
+      <v-col class="grow-0 mx-auto">
         <v-img
           :src="personInfo.avatar"
-          class="rounded-md mx-auto"
+          class="rounded-md"
           max-height="384"
           width="384"
         ></v-img> </v-col
