@@ -1,3 +1,4 @@
+<!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
 <template>
   <v-app class="w-full h-full">
     <v-layout class="w-full h-full">
@@ -47,9 +48,12 @@
       /></v-main>
     </v-layout>
     <v-footer color="primary">
-      <v-row justify="center" no-gutters>{{
-        t('meta.footer', { person: 'Enn Tobre', phone: '55599608' })
-      }}</v-row>
+      <v-row justify="center" no-gutters
+        >{{ t('meta.footer', { person: 'Enn Tobre' }) }}
+        <a href="tel:+37255599608" class="ml-2 flex items-center"
+          ><Icon icon="mdi:phone"></Icon>+372 555 99 608</a
+        ></v-row
+      >
     </v-footer>
   </v-app>
 </template>
@@ -67,6 +71,7 @@ import { usePeople } from './composables/people';
 import { useTitle } from '@vueuse/core';
 import { watch } from 'vue';
 import LanguageSelect from './components/language-select.vue';
+import { Icon } from '@iconify/vue';
 
 const { t, locale } = useI18n<useI18nType>();
 const theme = useTheme();
