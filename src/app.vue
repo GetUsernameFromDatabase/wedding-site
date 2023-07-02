@@ -43,9 +43,10 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-main class="w-full h-full overflow-auto"
-        ><component class="w-full h-full py-4 px-6" :is="currentView.component"
-      /></v-main>
+      <v-main class="w-full h-full overflow-auto">
+        <suspense
+          ><component class="w-full h-full py-4 px-6" :is="currentView.component" /></suspense
+      ></v-main>
     </v-layout>
     <v-footer color="primary">
       <v-row justify="center" no-gutters

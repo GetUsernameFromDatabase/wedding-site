@@ -27,5 +27,6 @@ import { storeToRefs } from 'pinia';
 
 const { t } = useI18n<useI18nType>();
 
-const { mapLinks } = storeToRefs(useWeddingInfo());
+const weddingInfoStore = await useWeddingInfo();
+const { mapLinks } = storeToRefs(weddingInfoStore);
 </script>

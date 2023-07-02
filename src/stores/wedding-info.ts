@@ -27,7 +27,7 @@ async function csvFetchAndLog<T>(
   return parsedCSV;
 }
 
-export const useWeddingInfo = () => {
+export const useWeddingInfo = async () => {
   const store = defineStore('wedding-info', {
     state: () => ({
       mapLinks: {} as MapLinksParsed,
@@ -74,6 +74,6 @@ export const useWeddingInfo = () => {
     },
   })();
 
-  store.initiate();
+  await store.initiate();
   return store;
 };
