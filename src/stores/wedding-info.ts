@@ -64,9 +64,10 @@ export const useWeddingInfo = () => {
       },
       async initiate() {
         if (this.isInitiated) return;
+        this.isInitiated = true;
+
         const promises = [this.updateMapLinks(), this.updateSongCategories(), this.updateSongs()];
         return await Promise.all(promises).then((values) => {
-          this.isInitiated = true;
           return values;
         });
       },
