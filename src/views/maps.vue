@@ -1,10 +1,6 @@
 <template>
   <div class="overflow-auto">
-    <WeddingProcession
-      :direct-link="mapLinks.weddingProcession ?? ''"
-      expanded
-      :iframe-src="mapLinks.embedWeddingProcession ?? ''"
-    ></WeddingProcession>
+    <WeddingProcession expanded></WeddingProcession>
 
     <v-divider class="my-1"></v-divider>
 
