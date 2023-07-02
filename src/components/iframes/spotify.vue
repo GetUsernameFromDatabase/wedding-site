@@ -16,9 +16,9 @@ import { computed } from 'vue';
 
 interface Properties {
   src: string;
-  useRawSrc: boolean;
-  compact: boolean;
-  noTheme: boolean;
+  useRawSrc?: boolean;
+  compact?: boolean;
+  noTheme?: boolean;
 }
 const properties = withDefaults(defineProps<Properties>(), {
   useRawSrc: false,

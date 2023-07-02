@@ -37,7 +37,7 @@ const weddingInfoStore = await useWeddingInfo();
 const { mapLinks } = storeToRefs(weddingInfoStore);
 
 interface Properties {
-  expanded: boolean;
+  expanded?: boolean;
 }
 const properties = withDefaults(defineProps<Properties>(), { expanded: false });
 
