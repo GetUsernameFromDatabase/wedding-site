@@ -47,7 +47,7 @@ const estonianLocale = {
   agenda: {
     title: 'Päevakord',
     ceremony: 'Pulma tseremoonia',
-    botanicalGarnder: 'Botaanika Aed',
+    botanicalGarden: 'Botaanika Aed',
     mhg: 'Miina Härma Gümnaasium',
     etAgriMuseum: 'Eesti Põllumajandusmuuseum',
     home: 'Kivimi',
@@ -90,7 +90,7 @@ export const availableLocales: AvailableLocales = {
     agenda: {
       title: 'Agenda',
       ceremony: 'Wedding ceremony',
-      botanicalGarnder: 'Botanical Garden',
+      botanicalGarden: 'Botanical Garden',
       mhg: 'Miina Härma Gymnasium',
       etAgriMuseum: 'Estonian Agricultural Museum',
       home: 'Kivimi',

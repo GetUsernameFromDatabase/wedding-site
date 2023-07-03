@@ -9,7 +9,7 @@ export const useAgenda: AgendaItem[] = [
     slidePictures: ['https://tartu.ee/sites/default/files/field/image/Tiigi%2012%20maja.JPG'],
   },
   {
-    text: 'agenda.botanicalGarnder',
+    text: 'agenda.botanicalGarden',
     icon: useIcons.botanicalGarden.vuetify,
     href: 'https://natmuseum.ut.ee/et',
   },
