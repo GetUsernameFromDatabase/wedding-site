@@ -34,7 +34,7 @@ export const ryanTheme: CustomTheme = {
 export const marionTheme: CustomTheme = {
   name: 'marion',
   theme: {
-    dark: true,
+    dark: false,
     colors: {
       background: '#F3E5F5',
       surface: '#F3E5F5',
