@@ -21,7 +21,7 @@
         <v-divider></v-divider>
 
         <v-card-text>
-          {{ personInfo.description }}
+          <p v-html="personInfo.description"></p>
         </v-card-text>
       </div>
     </v-expand-transition>

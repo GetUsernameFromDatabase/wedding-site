@@ -11,11 +11,8 @@
       ><v-col>
         <v-card-title> {{ personInfo.name }} </v-card-title>
         <v-card-subtitle> {{ personInfo.subtitle }} </v-card-subtitle>
-        <v-card-text>
-          {{ personInfo.description }}
-        </v-card-text>
-      </v-col></v-row
-    >
+        <v-card-text> <p v-html="personInfo.description"></p> </v-card-text> </v-col
+    ></v-row>
   </v-card>
 </template>
 
