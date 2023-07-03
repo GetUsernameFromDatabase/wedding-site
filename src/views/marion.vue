@@ -2,7 +2,6 @@
   <div>
     <longDescription person="marion"></longDescription>
     <v-spacer class="mt-5"></v-spacer>
-    <!-- TODO: use translation module -->
     <v-card title="Marion Songs" color="primary">
       <v-expansion-panels
         multiple
@@ -18,9 +17,9 @@
           <v-expansion-panel-title
             ><div class="flex justify-center w-full">
               {{
-                songCategories.find((value) => value['SONG-CATEGORY'] === marionSongCategory)?.[
-                  'EN-TRANSLATION' // TODO: MAKE WORK WITH TRANSLATION MODULE
-                ]
+                songCategories[marionSongCategory][
+                  `${$i18n.locale.toUpperCase()}-TRANSLATION` as keyof SongCategoryHeaders
+                ] || songCategories[marionSongCategory]['SONG-CATEGORY']
               }}
             </div></v-expansion-panel-title
           >
@@ -38,6 +37,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import type { SongCategoryHeaders } from '@/_types/requests';
 import spotifyVue from '@/components/iframes/spotify.vue';
 import longDescription from '@/components/person/long-description.vue';
 import { useWeddingInfo } from '@/stores/wedding-info';
@@ -50,5 +50,5 @@ const { songCategories, personSongs } = storeToRefs(weddingInfoStore);
 
 // TODO: this should stay here
 const panels = ref<number[]>([]);
-const marionSongCategories = computed(() => Object.keys(personSongs.value['marion']));
+const marionSongCategories = computed(() => Object.keys(personSongs.value.marion));
 </script>

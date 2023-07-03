@@ -32,7 +32,7 @@ export const useWeddingInfo = async () => {
   const store = defineStore('wedding-info', {
     state: () => ({
       mapLinks: {} as MapLinksParsed,
-      songCategories: [] as SongCategoryHeaders[],
+      songCategories: {} as { [key: string]: SongCategoryHeaders },
       songs: [] as SongHeaders[],
       isInitiated: false,
     }),
@@ -48,8 +48,9 @@ export const useWeddingInfo = async () => {
       async updateSongCategories() {
         const csvParseOptions = {
           columns: true,
+          objname: 'SONG-CATEGORY',
         };
-        const parsedCSV = await csvFetchAndLog<SongCategoryHeaders[]>(
+        const parsedCSV = await csvFetchAndLog<{ [key: string]: SongCategoryHeaders }>(
           'songCategories',
           this,
           csvParseOptions,
