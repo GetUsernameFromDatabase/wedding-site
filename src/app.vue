@@ -44,8 +44,7 @@
       </v-navigation-drawer>
 
       <v-main class="w-full h-full overflow-auto">
-        <suspense
-          ><component class="w-full h-full py-4 px-6" :is="currentView.component" /></suspense
+        <suspense><component class="py-4 px-6" :is="currentView.component" /></suspense
       ></v-main>
     </v-layout>
     <v-footer color="primary">
