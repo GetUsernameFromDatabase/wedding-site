@@ -45,6 +45,12 @@
 
     <v-divider class="m-2"></v-divider>
 
+    <IframeSpotify
+      src="https://open.spotify.com/playlist/0fFxFSfDk77eACERrOEXSs?si=1719f7e0e19147f2"
+    ></IframeSpotify>
+
+    <v-divider class="m-2"></v-divider>
+
     <v-container fluid>
       <v-row>
         <v-col class="pa-2 ma-2">
@@ -62,6 +68,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import IframeSpotify from '@/components/iframes/spotify.vue';
 import shortDescriptionVue from '@/components/person/short-description.vue';
 import WeddingProcession from '@/components/wedding-procession.vue';
 import { useAgenda as agenda } from '@/composables/agenda';
