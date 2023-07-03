@@ -49,38 +49,27 @@ export const useWeddingInfo = async () => {
     }),
     actions: {
       async updateMapLinks() {
-        const csvParseOptions = {
+        const parsedCSV = await csvFetchAndLog<WeddingInfoState['mapLinks']>('mapLinks', this, {
           columns: true,
           objname: 'NAME',
-        };
-        const parsedCSV = await csvFetchAndLog<WeddingInfoState['mapLinks']>(
-          'mapLinks',
-          this,
-          csvParseOptions,
-        );
+        });
         this.mapLinks = parsedCSV;
       },
       async updateSongCategories() {
-        const csvParseOptions = {
-          columns: true,
-          objname: 'SONG-CATEGORY',
-        };
         const parsedCSV = await csvFetchAndLog<WeddingInfoState['songCategories']>(
           'songCategories',
           this,
-          csvParseOptions,
+          {
+            columns: true,
+            objname: 'SONG-CATEGORY',
+          },
         );
         this.songCategories = parsedCSV;
       },
       async updateSongs() {
-        const csvParseOptions = {
+        const parsedCSV = await csvFetchAndLog<WeddingInfoState['songs']>('songs', this, {
           columns: true,
-        };
-        const parsedCSV = await csvFetchAndLog<WeddingInfoState['songs']>(
-          'songs',
-          this,
-          csvParseOptions,
-        );
+        });
         this.songs = parsedCSV;
       },
       async initiate() {
