@@ -51,7 +51,7 @@
       <v-row justify="center" no-gutters
         >{{ t('meta.footer', { person: 'Enn Tobre' }) }}
         <a href="tel:+37255599608" class="ml-2 flex items-center"
-          ><Icon icon="mdi:phone"></Icon>+372 555 99 608</a
+          ><Icon :icon="useIcons.contactPhone.iconify"></Icon>+372 555 99 608</a
         ></v-row
       >
     </v-footer>
@@ -72,6 +72,7 @@ import { useTitle } from '@vueuse/core';
 import { watch } from 'vue';
 import LanguageSelect from './components/language-select.vue';
 import { Icon } from '@iconify/vue';
+import { useIcons } from './composables/icons';
 
 const { t, locale } = useI18n<useI18nType>();
 const theme = useTheme();
@@ -83,14 +84,14 @@ const routes: RouteList = [
     type: 'nav',
     route: '/',
     component: ViewIndex,
-    icon: 'mdi-home',
+    icon: useIcons.home.vuetify,
     translateKey: 'navigation.home',
   },
   {
     type: 'nav',
     route: '/maps',
     component: ViewMaps,
-    icon: 'mdi-map-outline',
+    icon: useIcons.maps.vuetify,
     translateKey: 'navigation.maps',
   },
   { type: 'simple', route: '/ryan', component: ViewRyan },

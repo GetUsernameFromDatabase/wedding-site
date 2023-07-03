@@ -7,11 +7,13 @@
     <v-card class="mx-auto" :title="t('maps.linksToMaps')" color="primary">
       <v-list bg-color="secondary">
         <v-list-item :href="mapLinks.weddingProcession.LINK" target="_blank"
-          ><template v-slot:prepend> <v-icon icon="mdi-ring"></v-icon> </template
+          ><template v-slot:prepend>
+            <v-icon :icon="useIcons.weddingRing.vuetify"></v-icon> </template
           >{{ t('maps.procession') }}</v-list-item
         >
         <v-list-item :href="mapLinks.ourLocation.LINK" target="_blank"
-          ><template v-slot:prepend> <v-icon icon="mdi-clock"></v-icon> </template
+          ><template v-slot:prepend>
+            <v-icon :icon="useIcons.ourLocation.vuetify"></v-icon> </template
           >{{ t('maps.ourLocation') }}</v-list-item
         >
       </v-list>
@@ -24,6 +26,7 @@ import { useI18n } from 'vue-i18n';
 import WeddingProcession from '@/components/wedding-procession.vue';
 import { useWeddingInfo } from '@/stores/wedding-info';
 import { storeToRefs } from 'pinia';
+import { useIcons } from '@/composables/icons';
 
 const { t } = useI18n<useI18nType>();
 
