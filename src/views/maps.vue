@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-auto">
+  <div>
     <WeddingProcession expanded></WeddingProcession>
 
     <v-divider class="my-1"></v-divider>
