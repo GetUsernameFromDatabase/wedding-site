@@ -8,11 +8,11 @@ export const useAgenda: AgendaItem[] = [
     href: 'https://tartu.ee/et/abielu',
     slidePictures: ['https://tartu.ee/sites/default/files/field/image/Tiigi%2012%20maja.JPG'],
   },
-  {
-    text: 'agenda.botanicalGarden',
-    icon: useIcons.botanicalGarden.vuetify,
-    href: 'https://natmuseum.ut.ee/et',
-  },
+  // {
+  //   text: 'agenda.botanicalGarden',
+  //   icon: useIcons.botanicalGarden.vuetify,
+  //   href: 'https://natmuseum.ut.ee/et',
+  // },
   {
     text: 'agenda.mhg',
     icon: useIcons.mhg.vuetify,
