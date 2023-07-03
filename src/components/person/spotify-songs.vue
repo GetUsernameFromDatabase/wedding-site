@@ -4,7 +4,7 @@
       multiple
       v-model="panels"
       variant="accordion"
-      class="h-[calc(100vh-64px-40px-5rem)] overflow-auto"
+      class="max-h-[calc(100vh-64px-40px-5rem)] overflow-auto"
     >
       <v-expansion-panel
         bg-color="primary"
