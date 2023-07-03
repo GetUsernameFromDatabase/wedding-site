@@ -120,6 +120,7 @@ onMounted(() => {
   window.addEventListener('hashchange', changeThemeAccordingToPath);
 });
 
+watch(currentPath, () => (showDrawer.value = false));
 watch(
   locale,
   () => {
