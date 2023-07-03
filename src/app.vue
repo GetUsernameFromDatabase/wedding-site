@@ -1,7 +1,7 @@
 <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
 <template>
   <v-app>
-    <v-layout class="overflow-auto">
+    <v-layout>
       <v-app-bar :elevation="2" color="primary"
         ><template v-slot:prepend>
           <v-app-bar-nav-icon @click="showDrawer = !showDrawer"></v-app-bar-nav-icon> </template
@@ -43,7 +43,7 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-main>
+      <v-main scrollable>
         <v-container fluid
           ><suspense><component :is="currentView.component" /></suspense
         ></v-container>
