@@ -26,7 +26,7 @@
           >
           <v-expansion-panel-text>
             <spotifyVue
-              v-for="marionSong in peopleSongs.marion[marionSongCategory]"
+              v-for="marionSong in personSongs.marion[marionSongCategory]"
               :key="marionSong['SPOTIFY-LINK']"
               :src="marionSong['SPOTIFY-LINK']"
               compact
@@ -38,7 +38,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { SongHeaders } from '@/_types/requests';
 import spotifyVue from '@/components/iframes/spotify.vue';
 import longDescription from '@/components/person/long-description.vue';
 import { useWeddingInfo } from '@/stores/wedding-info';
@@ -47,26 +46,9 @@ import { ref } from 'vue';
 import { computed } from 'vue';
 
 const weddingInfoStore = await useWeddingInfo();
-const { songCategories, songs } = storeToRefs(weddingInfoStore);
-
-// TODO: move to wedding-info getters
-const peopleSongs = computed(() => {
-  const separatedSongs: Record<string, Record<string, SongHeaders[]>> = {};
-
-  for (const song of songs.value) {
-    const { WHOSE, CATEGORY } = song;
-    if (!separatedSongs[WHOSE]) {
-      separatedSongs[WHOSE] = {};
-    }
-    if (!separatedSongs[WHOSE][CATEGORY]) {
-      separatedSongs[WHOSE][CATEGORY] = [];
-    }
-    separatedSongs[WHOSE][CATEGORY].push(song);
-  }
-  return separatedSongs;
-});
+const { songCategories, personSongs } = storeToRefs(weddingInfoStore);
 
 // TODO: this should stay here
 const panels = ref<number[]>([]);
-const marionSongCategories = computed(() => Object.keys(peopleSongs.value['marion']));
+const marionSongCategories = computed(() => Object.keys(personSongs.value['marion']));
 </script>

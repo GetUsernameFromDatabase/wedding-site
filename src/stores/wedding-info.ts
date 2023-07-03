@@ -2,6 +2,7 @@ import type { MapLinksParsed, SongCategoryHeaders, SongHeaders } from '@/_types/
 import axios from 'axios';
 import { defineStore, type Store } from 'pinia';
 import { parse, type Options } from 'csv-parse/browser/esm/sync';
+import type { PersonSongs } from '@/_types/wedding-info';
 
 const csvSources = {
   mapLinks:
@@ -70,6 +71,23 @@ export const useWeddingInfo = async () => {
         return await Promise.all(promises).then((values) => {
           return values;
         });
+      },
+    },
+    getters: {
+      personSongs() {
+        const processedSongs: PersonSongs = { marion: {}, ryan: {}, 'ryan,marion': {} };
+
+        for (const song of this.songs) {
+          const { WHOSE, CATEGORY } = song;
+          if (!processedSongs[WHOSE]) {
+            processedSongs[WHOSE] = {};
+          }
+          if (!processedSongs[WHOSE][CATEGORY]) {
+            processedSongs[WHOSE][CATEGORY] = [];
+          }
+          processedSongs[WHOSE][CATEGORY].push(song);
+        }
+        return processedSongs;
       },
     },
   })();
