@@ -114,10 +114,12 @@ const currentView = computed(() => {
 // ---
 
 const showDrawer = ref(false);
+const vMainScroller = ref<Element | null>();
 
 onMounted(() => {
   changeThemeAccordingToPath();
   window.addEventListener('hashchange', changeThemeAccordingToPath);
+  vMainScroller.value = document.querySelector('div.v-main__scroller');
 });
 
 watch(currentPath, pathChanged);
@@ -135,6 +137,7 @@ function changeThemeAccordingToPath() {
 }
 
 function pathChanged() {
+  if (vMainScroller.value) vMainScroller.value.scrollTop = 0;
   showDrawer.value = false;
 }
 
