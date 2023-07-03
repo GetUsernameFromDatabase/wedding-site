@@ -5,7 +5,6 @@
     width="100%"
     :height="compact ? 152 : 352"
     frameBorder="0"
-    allowfullscreen
     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
     loading="lazy"
     v-bind="$attrs"
