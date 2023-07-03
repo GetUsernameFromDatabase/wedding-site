@@ -120,14 +120,8 @@ onMounted(() => {
   window.addEventListener('hashchange', changeThemeAccordingToPath);
 });
 
-watch(currentPath, () => (showDrawer.value = false));
-watch(
-  locale,
-  () => {
-    useTitle(t('meta.title'));
-  },
-  { immediate: true },
-);
+watch(currentPath, pathChanged);
+watch(locale, localeChanged, { immediate: true });
 
 function changeThemeAccordingToPath() {
   currentPath.value = window.location.hash;
@@ -138,6 +132,14 @@ function changeThemeAccordingToPath() {
   } else {
     theme.global.name.value = myMainTheme.name;
   }
+}
+
+function pathChanged() {
+  showDrawer.value = false;
+}
+
+function localeChanged() {
+  useTitle(t('meta.title'));
 }
 </script>
 
