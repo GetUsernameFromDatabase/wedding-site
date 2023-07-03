@@ -28,12 +28,23 @@ async function csvFetchAndLog<T>(
   return parsedCSV;
 }
 
+interface WeddingInfoState {
+  mapLinks: MapLinksParsed;
+  songCategories: { [key: string]: SongCategoryHeaders };
+  songs: SongHeaders[];
+  isInitiated: boolean;
+}
+
 export const useWeddingInfo = async () => {
   const store = defineStore('wedding-info', {
-    state: () => ({
-      mapLinks: {} as MapLinksParsed,
-      songCategories: {} as { [key: string]: SongCategoryHeaders },
-      songs: [] as SongHeaders[],
+    state: (): WeddingInfoState => ({
+      mapLinks: {
+        embedWeddingProcession: { LINK: '', NAME: '' },
+        ourLocation: { LINK: '', NAME: '' },
+        weddingProcession: { LINK: '', NAME: '' },
+      },
+      songCategories: {},
+      songs: [],
       isInitiated: false,
     }),
     actions: {
@@ -42,7 +53,11 @@ export const useWeddingInfo = async () => {
           columns: true,
           objname: 'NAME',
         };
-        const parsedCSV = await csvFetchAndLog<MapLinksParsed>('mapLinks', this, csvParseOptions);
+        const parsedCSV = await csvFetchAndLog<WeddingInfoState['mapLinks']>(
+          'mapLinks',
+          this,
+          csvParseOptions,
+        );
         this.mapLinks = parsedCSV;
       },
       async updateSongCategories() {
@@ -50,7 +65,7 @@ export const useWeddingInfo = async () => {
           columns: true,
           objname: 'SONG-CATEGORY',
         };
-        const parsedCSV = await csvFetchAndLog<{ [key: string]: SongCategoryHeaders }>(
+        const parsedCSV = await csvFetchAndLog<WeddingInfoState['songCategories']>(
           'songCategories',
           this,
           csvParseOptions,
@@ -61,7 +76,11 @@ export const useWeddingInfo = async () => {
         const csvParseOptions = {
           columns: true,
         };
-        const parsedCSV = await csvFetchAndLog<SongHeaders[]>('songs', this, csvParseOptions);
+        const parsedCSV = await csvFetchAndLog<WeddingInfoState['songs']>(
+          'songs',
+          this,
+          csvParseOptions,
+        );
         this.songs = parsedCSV;
       },
       async initiate() {
