@@ -4,9 +4,12 @@ export interface SongsByCategory {
   [category: string]: SongHeaders[];
 }
 
-export interface PersonSongs {
-  [person: string]: SongsByCategory;
+export interface SpecificPeopleSongs {
   marion: SongsByCategory;
   ryan: SongsByCategory;
   'ryan,marion': SongsByCategory;
+}
+
+export interface PersonSongs extends SpecificPeopleSongs {
+  [person: string]: SongsByCategory;
 }
