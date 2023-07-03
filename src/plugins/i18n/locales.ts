@@ -28,6 +28,7 @@ const estonianLocale = {
   message: {
     devTestMessage: 'testimine',
     directLink: 'otselink',
+    songsTitle: '{person}i Laulud',
   },
   navigation: {
     maps: 'Kaardid',
@@ -70,6 +71,7 @@ export const availableLocales: AvailableLocales = {
     message: {
       devTestMessage: 'testing',
       directLink: 'direct link',
+      songsTitle: "{person}'s Songs",
     },
     navigation: {
       maps: 'Maps',
