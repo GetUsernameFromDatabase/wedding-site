@@ -17,14 +17,11 @@
 
       <v-navigation-drawer v-model="showDrawer" temporary>
         <v-list-item
-          :prepend-avatar="people.ryan.value.avatar"
-          :title="people.ryan.value.name"
-          :href="people.ryan.value.href"
-        ></v-list-item>
-        <v-list-item
-          :prepend-avatar="people.marion.value.avatar"
-          :title="people.marion.value.name"
-          :href="people.marion.value.href"
+          v-for="person in people"
+          :key="person.value.href"
+          :prepend-avatar="person.value.avatar"
+          :title="person.value.name"
+          :href="person.value.href"
         ></v-list-item>
 
         <v-divider class="border-opacity-75"></v-divider>
