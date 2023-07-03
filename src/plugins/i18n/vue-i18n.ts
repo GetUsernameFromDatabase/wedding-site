@@ -9,4 +9,5 @@ export default createI18n({
   fallbackLocale: 'et',
   globalInjection: true,
   messages: availableLocales,
+  warnHtmlMessage: false,
 });
