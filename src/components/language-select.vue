@@ -31,6 +31,7 @@
 import { Icon } from '@iconify/vue';
 import { localeMetaInfo, type SupportedLocale } from '@/plugins/i18n/locales';
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 function getLocaleMetaInfo(locale: SupportedLocale & (string & {})) {
   return localeMetaInfo[locale];
 }

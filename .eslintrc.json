@@ -1,6 +1,6 @@
 {
   "root": true,
-  "plugins": ["unicorn", "prettier", "promise", "regexp"],
+  "plugins": ["unicorn", "prettier", "promise", "regexp", "@typescript-eslint"],
   "extends": [
     "plugin:vue/vue3-essential",
     "eslint:recommended",
@@ -10,8 +10,10 @@
     "plugin:prettier/recommended",
     "plugin:@intlify/vue-i18n/recommended",
     "plugin:promise/recommended",
-    "plugin:regexp/recommended"
+    "plugin:regexp/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
+  "parser": "vue-eslint-parser",
   "parserOptions": {
     "ecmaVersion": "latest"
   },
