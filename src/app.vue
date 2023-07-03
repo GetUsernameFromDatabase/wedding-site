@@ -1,7 +1,7 @@
 <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
 <template>
-  <v-app class="w-full h-full">
-    <v-layout class="w-full h-full">
+  <v-app>
+    <v-layout class="overflow-auto">
       <v-app-bar :elevation="2" color="primary"
         ><template v-slot:prepend>
           <v-app-bar-nav-icon @click="showDrawer = !showDrawer"></v-app-bar-nav-icon> </template
@@ -43,9 +43,11 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-main class="w-full h-full overflow-auto">
-        <suspense><component class="py-4 px-6" :is="currentView.component" /></suspense
-      ></v-main>
+      <v-main>
+        <v-container fluid
+          ><suspense><component :is="currentView.component" /></suspense
+        ></v-container>
+      </v-main>
     </v-layout>
     <v-footer color="primary">
       <v-row justify="center" no-gutters
