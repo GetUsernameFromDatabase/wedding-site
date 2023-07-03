@@ -21,12 +21,12 @@
           </div></v-expansion-panel-title
         >
         <v-expansion-panel-text>
-          <spotifyVue
+          <IframeSpotify
             v-for="song in personSongs[person][songCategory]"
             :key="song['SPOTIFY-LINK']"
             :src="song['SPOTIFY-LINK']"
             compact
-          ></spotifyVue>
+          ></IframeSpotify>
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -40,6 +40,7 @@ import { useWeddingInfo } from '@/stores/wedding-info';
 import { storeToRefs } from 'pinia';
 import { ref, computed, capitalize } from 'vue';
 import { useI18n } from 'vue-i18n';
+import IframeSpotify from '../iframes/spotify.vue';
 
 interface Properties {
   person: keyof SpecificPeopleSongs;
