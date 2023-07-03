@@ -49,7 +49,7 @@
         ></v-container>
       </v-main>
     </v-layout>
-    <v-footer color="primary">
+    <v-footer color="primary" class="max-h-10">
       <v-row justify="center" no-gutters
         >{{ t('meta.footer', { person: 'Enn Tobre' }) }}
         <a href="tel:+37255599608" class="ml-2 flex items-center"
