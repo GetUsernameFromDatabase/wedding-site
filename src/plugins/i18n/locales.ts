@@ -59,7 +59,12 @@ const estonianLocale = {
     profession: 'Programmeerija',
   },
   marion: {
-    description: 'WIP',
+    description:
+      'Olen Graafiline disainer kelle lemmik meediumid on markerid ja vesivärv.' +
+      '<br>Aastaaid kunsti tehes pole leidnud stiili, mis mulle külge jäeks.' +
+      '<br><br>Mulle on muusika alati meeldinud ja ainult vähesed zanrad ei meeldi mulle.' +
+      '<br>Mu lemmik muusika zanrad on hardcore, speedcore, electro, 80-ndad ja chill.' +
+      '<br>Aastatega on minu muusika maitse veelgi laienenud tänu Ryan-ile.',
     profession: 'Graafiline Disainer',
   },
 };
@@ -102,7 +107,12 @@ export const availableLocales: AvailableLocales = {
       profession: 'Programmer',
     },
     marion: {
-      description: 'WIP',
+      description:
+        "I'm a graphical designer whose favourite mediums to use are markers and watercolour." +
+        '<br>With years of practicing art, no style has stuck to me.' +
+        "<br><br>I have always liked music and there are only very few genres that I don't like to listen to." +
+        '<br>My favourite music genres are hardcore, speedcore, electro, 80s and chill.' +
+        '<br>With years my music taste has expanded thanks to Ryan.',
       profession: 'Graphical Designer',
     },
   },
