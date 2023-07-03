@@ -24,6 +24,7 @@
           :height="mdOrGreater ? 480 : 320"
           hide-delimiter-background
           show-arrows="hover"
+          color="primary"
         >
           <template v-for="item in agenda" :key="item.text"
             ><v-carousel-item v-for="slidePicture in item.slidePictures" :key="slidePicture">
