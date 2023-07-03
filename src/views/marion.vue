@@ -2,8 +2,14 @@
   <div>
     <longDescription person="marion"></longDescription>
     <v-spacer class="mt-5"></v-spacer>
+    <!-- TODO: use translation module -->
     <v-card title="Marion Songs" color="primary">
-      <v-expansion-panels multiple v-model="panels" variant="accordion">
+      <v-expansion-panels
+        multiple
+        v-model="panels"
+        variant="accordion"
+        class="h-[calc(100vh-64px-40px-5rem)] overflow-auto"
+      >
         <v-expansion-panel
           bg-color="primary"
           v-for="marionSongCategory in marionSongCategories"
