@@ -96,8 +96,8 @@ const routes: RouteList = [
     icon: useIcons.maps.vuetify,
     translateKey: 'navigation.maps',
   },
-  { type: 'simple', route: '/ryan', component: ViewRyan },
-  { type: 'simple', route: '/marion', component: ViewMarion },
+  { type: 'simple', route: people.ryan.value.href.slice(1), component: ViewRyan },
+  { type: 'simple', route: people.marion.value.href.slice(1), component: ViewMarion },
   { type: 'divider' },
 ];
 const currentPath = ref(window.location.hash);
