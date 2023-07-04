@@ -45,6 +45,8 @@ const estonianLocale = {
     procession: 'Pulma Rongkäik',
     ourLocation: 'Meie Asukoht',
     lasita: '@:agenda.lasita Kaart',
+    resetView: 'Lähtesta Vaade',
+    toMyLocation: 'Minu Asukoht',
   },
   agenda: {
     title: 'Päevakord',
@@ -72,6 +74,7 @@ const estonianLocale = {
   errors: {
     geolocation: {
       'User denied Geolocation': 'Palun lubage geolokatsioon, et enda asukohta kaardil näha',
+      LocationNotFound: 'Teie asukoht pole teada',
     },
   },
 };
@@ -100,6 +103,8 @@ export const availableLocales: AvailableLocales = {
       procession: 'Wedding Procession',
       ourLocation: 'Our Location',
       lasita: '@:agenda.lasita Map',
+      resetView: 'Reset View',
+      toMyLocation: 'My Location',
     },
     agenda: {
       title: 'Agenda',
@@ -127,6 +132,7 @@ export const availableLocales: AvailableLocales = {
     errors: {
       geolocation: {
         'User denied Geolocation': 'Please allow Geolocation to view your location',
+        LocationNotFound: 'Could not find your location',
       },
     },
   },
