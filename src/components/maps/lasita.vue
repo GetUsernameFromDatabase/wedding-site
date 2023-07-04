@@ -34,12 +34,13 @@ import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import { OSM, Vector as VectorSource } from 'ol/source.js';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer.js';
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, ref, computed, watch } from 'vue';
 import { defaults as interactionDefaults, MouseWheelZoom } from 'ol/interaction';
 import { platformModifierKeyOnly, altKeyOnly } from 'ol/events/condition';
 import { useTimeoutFn } from '@vueuse/core';
 import Geolocation from 'ol/Geolocation.js';
 import { useI18n } from 'vue-i18n';
+import { Fill, Stroke, Style, Circle, Text } from 'ol/style';
 import lasitaGeoJson from '@/json/lasita-geojson.json';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
@@ -47,9 +48,8 @@ import { useGeolocation } from '@/composables/openlayers';
 // TODO: show people in house with overlay
 // TODO: require two fingers to move (MOBILE)
 // TODO: _icons for buttons?_/_replace text with icon, add tooltips_?
-// TODO: text/tooltip on houses (LOW-PRIO -- not worth the effort)
 
-const { t } = useI18n<useI18nType>();
+const { t, locale } = useI18n<useI18nType>();
 
 const originalCenter = [26.3709, 58.3304];
 const originalZoom = 18;
@@ -74,6 +74,9 @@ const { start: timeoutOverlayStart } = useTimeoutFn(() => {
   showOverlay.value = false;
 }, 3000);
 
+watch(locale, () => {
+  map?.redrawText();
+});
 // --- VUE LIFECYCLE ---
 onMounted(() => {
   initiateOpenLayer();
@@ -112,6 +115,25 @@ function makeMainLayer() {
 }
 
 function makeGeoJsonLayer() {
+  // STYLES
+  const defaultStyle = new Style({
+    fill: new Fill({ color: 'rgba(255, 255, 255, 0.2)' }),
+    stroke: new Stroke({ color: '#3399CC', width: 1.25 }),
+    image: new Circle({
+      fill: new Fill({ color: 'rgba(255, 255, 255, 0.2)' }),
+      stroke: new Stroke({ color: '#3399CC', width: 1.25 }),
+      radius: 5,
+    }),
+  });
+  const labelStyle = new Style({
+    text: new Text({
+      text: '',
+      fill: new Fill({ color: '#000' }),
+      stroke: new Stroke({ color: '#fff', width: 2 }),
+      overflow: true,
+    }),
+  });
+  // VECTOR LAYER, SOURCE
   const geoJson = new GeoJSON();
   const vectorSource = new VectorSource({
     features: geoJson.readFeatures(lasitaGeoJson),
@@ -119,6 +141,16 @@ function makeGeoJsonLayer() {
 
   const vectorLayer = new VectorLayer({
     source: vectorSource,
+    style: function (feature) {
+      const featureName = feature.get('name');
+      if (!featureName) return defaultStyle;
+
+      const translateRoot: AllMessageSchemaKeys = 'lasita';
+      var translatedName = t(`${translateRoot}.${featureName}`);
+      labelStyle.getText().setText(translatedName);
+
+      return [defaultStyle, labelStyle];
+    },
   });
   return vectorLayer;
 }

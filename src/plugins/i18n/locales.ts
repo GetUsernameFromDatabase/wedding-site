@@ -77,6 +77,16 @@ const estonianLocale = {
       LocationNotFound: 'Teie asukoht pole teada',
     },
   },
+  lasita: {
+    shed: 'Maja',
+    forest_house: 'Metsamaja',
+    forest_house_wc: 'WC',
+    pond_house: 'Tiigimaja',
+    sauna: 'Saun',
+    sinitaevas: 'Sinitaevas',
+    main_house: 'Peomaja',
+    parking_space: 'Parkla',
+  },
 };
 export const availableLocales: AvailableLocales = {
   et: estonianLocale,
@@ -134,6 +144,16 @@ export const availableLocales: AvailableLocales = {
         'User denied Geolocation': 'Please allow Geolocation to view your location',
         LocationNotFound: 'Could not find your location',
       },
+    },
+    lasita: {
+      shed: 'Building',
+      forest_house: 'Forest House',
+      forest_house_wc: 'WC',
+      pond_house: 'Pond House',
+      sauna: 'Sauna',
+      sinitaevas: 'Sinitaevas',
+      main_house: 'Main House',
+      parking_space: 'Parking Space',
     },
   },
 };
