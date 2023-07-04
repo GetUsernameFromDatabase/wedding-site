@@ -37,7 +37,9 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "name": "parking_space"
+      },
       "geometry": {
         "coordinates": [
           26.371636854611296,
