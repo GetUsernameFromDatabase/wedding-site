@@ -84,7 +84,11 @@ function makeLayers(): BaseLayer[] | Collection<BaseLayer> | LayerGroup | undefi
 }
 // --- EVENTS ---
 function mapWheelEvent(event: WheelEvent) {
-  if (event.ctrlKey || event.altKey) return;
+  if (event.ctrlKey || event.altKey) {
+    event.preventDefault();
+    showOverlay.value = false;
+    return;
+  }
   showOverlay.value = true;
   timeoutOverlayStart();
 }
