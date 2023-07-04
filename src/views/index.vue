@@ -1,6 +1,6 @@
 <template>
   <div>
-    <WeddingProcession></WeddingProcession>
+    <WeddingMaps></WeddingMaps>
 
     <v-divider class="m-2"></v-divider>
 
@@ -73,9 +73,9 @@ import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
 import IframeSpotify from '@/components/iframes/spotify.vue';
 import shortDescriptionVue from '@/components/person/short-description.vue';
-import WeddingProcession from '@/components/maps/wedding-procession.vue';
 import { useAgenda as agenda } from '@/composables/agenda';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
+import WeddingMaps from '@/components/expansion-panels/wedding-maps.vue';
 
 const { t } = useI18n<useI18nType>();
 const breakpoints = useBreakpoints(breakpointsTailwind);
