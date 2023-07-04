@@ -3,7 +3,54 @@
   "features": [
     {
       "type": "Feature",
+      "properties": {
+        "name": "forest_house"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              26.370785014545106,
+              58.3306855858892
+            ],
+            [
+              26.37090751369732,
+              58.33068332131171
+            ],
+            [
+              26.37091225838293,
+              58.33074537068754
+            ],
+            [
+              26.37078846522519,
+              58.33074808817602
+            ],
+            [
+              26.370785014545106,
+              58.3306855858892
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": 0
+    },
+    {
+      "type": "Feature",
       "properties": {},
+      "geometry": {
+        "coordinates": [
+          26.371636854611296,
+          58.33061696763116
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "main_house"
+      },
       "geometry": {
         "coordinates": [
           [
@@ -39,11 +86,13 @@
         ],
         "type": "Polygon"
       },
-      "id": 0
+      "id": 2
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "name": "shed"
+      },
       "geometry": {
         "coordinates": [
           [
@@ -70,45 +119,14 @@
           ]
         ],
         "type": "Polygon"
-      }
+      },
+      "id": 3
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "forest_house"
+        "name": "forest_house_wc"
       },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              26.370785014545106,
-              58.3306855858892
-            ],
-            [
-              26.37090751369732,
-              58.33068332131171
-            ],
-            [
-              26.37091225838293,
-              58.33074537068754
-            ],
-            [
-              26.37078846522519,
-              58.33074808817602
-            ],
-            [
-              26.370785014545106,
-              58.3306855858892
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      },
-      "id": 2
-    },
-    {
-      "type": "Feature",
-      "properties": {},
       "geometry": {
         "coordinates": [
           [
@@ -135,11 +153,14 @@
           ]
         ],
         "type": "Polygon"
-      }
+      },
+      "id": 4
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "name": "pond_house"
+      },
       "geometry": {
         "coordinates": [
           [
@@ -166,11 +187,14 @@
           ]
         ],
         "type": "Polygon"
-      }
+      },
+      "id": 5
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "name": "sauna"
+      },
       "geometry": {
         "coordinates": [
           [
@@ -197,18 +221,58 @@
           ]
         ],
         "type": "Polygon"
-      }
+      },
+      "id": 6
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "name": "sinitaevas"
+      },
       "geometry": {
         "coordinates": [
-          26.371577837408097,
-          58.330618689021776
+          [
+            [
+              26.370279942924412,
+              58.32957134015129
+            ],
+            [
+              26.370312523980942,
+              58.32949151153758
+            ],
+            [
+              26.37034766041515,
+              58.32949654275791
+            ],
+            [
+              26.370357243077734,
+              58.3294764178718
+            ],
+            [
+              26.370453069714586,
+              58.329486815731144
+            ],
+            [
+              26.370443487050466,
+              58.329510965585854
+            ],
+            [
+              26.370515037606907,
+              58.32951901553389
+            ],
+            [
+              26.370484373083144,
+              58.32959381288012
+            ],
+            [
+              26.370279942924412,
+              58.32957134015129
+            ]
+          ]
         ],
-        "type": "Point"
-      }
+        "type": "Polygon"
+      },
+      "id": 7
     }
   ]
 }
