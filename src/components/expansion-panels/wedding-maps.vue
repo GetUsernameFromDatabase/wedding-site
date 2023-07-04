@@ -20,9 +20,12 @@ import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 const { t } = useI18n<useI18nType>();
 
 interface Properties {
-  expanded?: boolean;
+  initialPanels?: number[];
 }
-const properties = withDefaults(defineProps<Properties>(), { expanded: false });
-
-const panels = ref<number[]>(properties.expanded ? [0] : []);
+const properties = withDefaults(defineProps<Properties>(), {
+  initialPanels() {
+    return [];
+  },
+});
+const panels = ref(properties.initialPanels);
 </script>

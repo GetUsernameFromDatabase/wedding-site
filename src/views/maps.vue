@@ -1,6 +1,6 @@
 <template>
   <div>
-    <WeddingMaps expanded></WeddingMaps>
+    <WeddingMaps :initial-panels="[0]"></WeddingMaps>
     <MapLasita></MapLasita>
 
     <v-divider class="my-1"></v-divider>
