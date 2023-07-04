@@ -1,6 +1,7 @@
 <template>
   <div>
     <WeddingProcession expanded></WeddingProcession>
+    <LasitaMap></LasitaMap>
 
     <v-divider class="my-1"></v-divider>
 
@@ -27,6 +28,7 @@ import WeddingProcession from '@/components/wedding-procession.vue';
 import { useWeddingInfo } from '@/stores/wedding-info';
 import { storeToRefs } from 'pinia';
 import { useIcons } from '@/composables/icons';
+import LasitaMap from '@/components/lasita-map.vue';
 
 const { t } = useI18n<useI18nType>();
 
