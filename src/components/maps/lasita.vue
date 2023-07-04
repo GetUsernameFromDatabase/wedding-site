@@ -45,8 +45,10 @@ import lasitaGeoJson from '@/json/lasita-geojson.json';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 import { useGeolocation } from '@/composables/openlayers';
-// TODO: redirect to house view on house click
-// TODO: text/tooltip on houses
+// TODO: show people in house with overlay
+// TODO: require two fingers to move (MOBILE)
+// TODO: _icons for buttons?_/_replace text with icon, add tooltips_?
+// TODO: text/tooltip on houses (LOW-PRIO -- not worth the effort)
 
 const { t } = useI18n<useI18nType>();
 
