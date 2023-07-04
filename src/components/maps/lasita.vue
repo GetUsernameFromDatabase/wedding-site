@@ -1,8 +1,14 @@
 <template>
-  <!-- TODO: use i18n -->
-  <v-card title="LASITA" color="primary">
+  <v-card color="primary">
+    <v-card-title
+      ><div class="flex justify-center w-full">
+        {{ t('maps.lasita') }}
+      </div></v-card-title
+    >
     <v-card-text
-      ><p class="text-error" v-if="errorMessage">{{ errorMessage }}</p></v-card-text
+      ><p class="text-error" v-if="geolocationErrorMessage">
+        {{ geolocationErrorMessageDisplay }}
+      </p></v-card-text
     >
     <v-container fluid>
       <div ref="mapElement" class="map h-[500px] relative" @wheel="mapWheelEvent"></div>
@@ -13,7 +19,7 @@
         class="align-center justify-center"
         :attach="mapElement"
       >
-        <p class="text-2xl text-white">Use ctrl+scroll to zoom the map</p></v-overlay
+        <p class="text-2xl text-white">{{ t('message.ctrlzoom') }}</p></v-overlay
       >
     </v-container>
   </v-card>
@@ -25,7 +31,7 @@ import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import { OSM, Vector as VectorSource } from 'ol/source.js';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer.js';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import type BaseLayer from 'ol/layer/Base';
 import { defaults as interactionDefaults, MouseWheelZoom } from 'ol/interaction';
 import { platformModifierKeyOnly, altKeyOnly } from 'ol/events/condition';
@@ -34,13 +40,25 @@ import Geolocation from 'ol/Geolocation.js';
 import { Point } from 'ol/geom';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style.js';
 import Feature from 'ol/Feature';
+import { useI18n } from 'vue-i18n';
 import lasitaGeoJson from '@/json/lasita-geojson.json';
+import type { useI18nType } from '@/plugins/i18n/vue-i18n';
+import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 // TODO: redirect to house view on house click
 // TODO: text/tooltip on houses
 
+const { t } = useI18n<useI18nType>();
+
 const mapElement = ref<HTMLDivElement>();
 const showOverlay = ref(false);
-const errorMessage = ref('');
+const geolocationErrorMessage = ref('');
+const geolocationErrorMessageDisplay = computed(() => {
+  const translateRoot: AllMessageSchemaKeys = 'errors.geolocation';
+  const translatedMessage = t(`${translateRoot}.${geolocationErrorMessage.value}`);
+
+  if (translatedMessage.startsWith(translateRoot)) return geolocationErrorMessage.value;
+  return translatedMessage;
+});
 
 const { start: timeoutOverlayStart } = useTimeoutFn(() => {
   showOverlay.value = false;
@@ -120,8 +138,7 @@ function makeGeolocation(projection: ProjectionLike) {
   // EVENTS
   geolocation.on('error', function (error) {
     console.error(error);
-    // TODO: internationalization
-    errorMessage.value = error.message;
+    geolocationErrorMessage.value = error.message;
   });
   geolocation.on('change:accuracyGeometry', function () {
     const accuracyGeometry = geolocation.getAccuracyGeometry();

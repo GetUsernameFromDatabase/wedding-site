@@ -29,6 +29,7 @@ const estonianLocale = {
     devTestMessage: 'testimine',
     directLink: 'otselink',
     songsTitle: '{person}i Laulud',
+    ctrlzoom: 'Kasuta ctrl+kerijat, et kaardil suumida',
   },
   navigation: {
     maps: 'Kaardid',
@@ -43,6 +44,7 @@ const estonianLocale = {
     linksToMaps: 'Lingid kaartidele',
     procession: 'Pulma Rongkäik',
     ourLocation: 'Meie Asukoht',
+    lasita: '@:agenda.lasita Kaart',
   },
   agenda: {
     title: 'Päevakord',
@@ -67,6 +69,11 @@ const estonianLocale = {
       '<br>Aastatega on minu muusika maitse veelgi laienenud tänu Ryan-ile.',
     profession: 'Graafiline Disainer',
   },
+  errors: {
+    geolocation: {
+      'User denied Geolocation': 'Palun lubage geolokatsioon, et enda asukohta kaardil näha',
+    },
+  },
 };
 export const availableLocales: AvailableLocales = {
   et: estonianLocale,
@@ -77,6 +84,7 @@ export const availableLocales: AvailableLocales = {
       devTestMessage: 'testing',
       directLink: 'direct link',
       songsTitle: "{person}'s Songs",
+      ctrlzoom: 'Use ctrl+scroll to zoom the map',
     },
     navigation: {
       maps: 'Maps',
@@ -91,6 +99,7 @@ export const availableLocales: AvailableLocales = {
       linksToMaps: 'Links to maps',
       procession: 'Wedding Procession',
       ourLocation: 'Our Location',
+      lasita: '@:agenda.lasita Map',
     },
     agenda: {
       title: 'Agenda',
@@ -114,6 +123,11 @@ export const availableLocales: AvailableLocales = {
         '<br>My favourite music genres are hardcore, speedcore, electro, 80s and chill.' +
         '<br>With years my music taste has expanded thanks to Ryan.',
       profession: 'Graphical Designer',
+    },
+    errors: {
+      geolocation: {
+        'User denied Geolocation': 'Please allow Geolocation to view your location',
+      },
     },
   },
 };
