@@ -35,7 +35,6 @@ import View from 'ol/View.js';
 import { OSM, Vector as VectorSource } from 'ol/source.js';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer.js';
 import { onMounted, ref, computed } from 'vue';
-import type BaseLayer from 'ol/layer/Base';
 import { defaults as interactionDefaults, MouseWheelZoom } from 'ol/interaction';
 import { platformModifierKeyOnly, altKeyOnly } from 'ol/events/condition';
 import { useTimeoutFn } from '@vueuse/core';
@@ -90,7 +89,7 @@ function initiateOpenLayer() {
   geolocation = createdGeolocation.geolocation;
 
   map = new Map({
-    layers: [...makeLayers(), createdGeolocation.layer],
+    layers: [makeMainLayer(), makeGeoJsonLayer(), createdGeolocation.layer],
     target: mapElement.value,
     view: view,
     interactions: interactionDefaults({
@@ -106,20 +105,24 @@ function initiateOpenLayer() {
   registerMapEvents(map);
 }
 
-function makeLayers(): BaseLayer[] {
-  const vectorSource = new VectorSource({
-    features: new GeoJSON().readFeatures(lasitaGeoJson),
-  });
-
-  const tileLayer = new TileLayer({
+function makeMainLayer() {
+  return new TileLayer({
     source: new OSM(),
   });
+}
+
+function makeGeoJsonLayer() {
+  const geoJson = new GeoJSON();
+  const vectorSource = new VectorSource({
+    features: geoJson.readFeatures(lasitaGeoJson),
+  });
+
   const vectorLayer = new VectorLayer({
     source: vectorSource,
   });
-
-  return [tileLayer, vectorLayer];
+  return vectorLayer;
 }
+
 function makeGeolocation(projection: ProjectionLike) {
   const geolocation = useGeolocation(projection);
   geolocation.geolocation.on('error', function (error) {
