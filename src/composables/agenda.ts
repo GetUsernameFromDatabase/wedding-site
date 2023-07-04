@@ -1,5 +1,5 @@
-import type { AgendaItem } from '@/_types/agenda';
 import { useIcons } from './icons';
+import type { AgendaItem } from '@/_types/agenda';
 
 export const useAgenda: AgendaItem[] = [
   {

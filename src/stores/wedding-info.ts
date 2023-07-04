@@ -1,7 +1,7 @@
-import type { MapLinksParsed, SongCategoryHeaders, SongHeaders } from '@/_types/requests';
 import axios from 'axios';
 import { defineStore, type Store } from 'pinia';
 import { parse, type Options } from 'csv-parse/browser/esm/sync';
+import type { MapLinksParsed, SongCategoryHeaders, SongHeaders } from '@/_types/requests';
 import type { PersonSongs } from '@/_types/wedding-info';
 
 const csvSources = {

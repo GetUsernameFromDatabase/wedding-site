@@ -1,6 +1,6 @@
 {
   "root": true,
-  "plugins": ["unicorn", "prettier", "promise", "regexp", "@typescript-eslint"],
+  "plugins": ["unicorn", "prettier", "promise", "regexp", "@typescript-eslint", "import"],
   "extends": [
     "plugin:vue/vue3-essential",
     "eslint:recommended",
@@ -11,7 +11,9 @@
     "plugin:@intlify/vue-i18n/recommended",
     "plugin:promise/recommended",
     "plugin:regexp/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
   ],
   "parser": "vue-eslint-parser",
   "parserOptions": {
@@ -24,5 +26,21 @@
       "env": { "node": true }
     }
   ],
-  "rules": { "vue/multi-word-component-names": "off", "@intlify/vue-i18n/no-missing-keys": "off" }
+  "rules": {
+    "vue/multi-word-component-names": "off",
+    "@intlify/vue-i18n/no-missing-keys": "off",
+    "import/order": "error"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": ["tsconfig.app.json", "tsconfig.node.json", "tsconfig.json"],
+        "extensions": ["vue"]
+      }
+    }
+  }
 }

@@ -58,19 +58,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useTheme } from 'vuetify';
+import { useTitle } from '@vueuse/core';
+import { Icon } from '@iconify/vue';
 import type { RouteList, SimpleRoute, ViewableRoute } from './_types/routes';
 import type { useI18nType } from './plugins/i18n/vue-i18n';
 import { View404, ViewIndex, ViewMaps, ViewMarion, ViewRyan } from './views';
-import { useTheme } from 'vuetify';
 import { marionTheme, myMainTheme, ryanTheme } from './plugins/vuetify/themes';
 import { usePeople } from './composables/people';
-import { useTitle } from '@vueuse/core';
-import { watch } from 'vue';
 import LanguageSelect from './components/language-select.vue';
-import { Icon } from '@iconify/vue';
 import { useIcons } from './composables/icons';
 
 const { t, locale } = useI18n<useI18nType>();

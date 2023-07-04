@@ -3,8 +3,8 @@
  * {@link https://vue-i18n.intlify.dev/guide/advanced/function.html#messages-functions}
  */
 
-import type { DeepKeyOf } from '@/_types/typescript-utils';
 import { et, en } from 'vuetify/locale';
+import type { DeepKeyOf } from '@/_types/typescript-utils';
 
 export type SupportedLocale = 'et' | 'en';
 export interface LocaleMetaInfo {

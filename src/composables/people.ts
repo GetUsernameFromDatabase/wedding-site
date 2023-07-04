@@ -1,8 +1,8 @@
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { weddingCeremonyDate } from '@/info/dates';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import { useMainStore } from '@/stores/main';
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 
 interface PersonInfo {
   name: string;

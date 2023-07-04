@@ -11,12 +11,11 @@ import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import { OSM, Vector as VectorSource } from 'ol/source.js';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer.js';
-import { onMounted } from 'vue';
-import lasitaGeoJson from '@/json/lasita-geojson.json';
+import { onMounted, ref } from 'vue';
 import type BaseLayer from 'ol/layer/Base';
 import type LayerGroup from 'ol/layer/Group';
 import type Collection from 'ol/Collection';
-import { ref } from 'vue';
+import lasitaGeoJson from '@/json/lasita-geojson.json';
 // TODO: disable zoom like google iframe does
 // TODO: redirect to house view on house click
 // TODO: geolocation

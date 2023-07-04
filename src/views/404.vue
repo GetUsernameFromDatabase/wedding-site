@@ -21,9 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 
 const { t } = useI18n<useI18nType>();
 const torch = ref<HTMLDivElement>();

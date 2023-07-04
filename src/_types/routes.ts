@@ -1,5 +1,5 @@
-import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 import type { Component } from 'vue';
+import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 
 export interface Divider {
   type: 'divider';

@@ -33,14 +33,14 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import type { SongCategoryHeaders } from '@/_types/requests';
-import type { SpecificPeopleSongs } from '@/_types/wedding-info';
-import type { useI18nType } from '@/plugins/i18n/vue-i18n';
-import { useWeddingInfo } from '@/stores/wedding-info';
 import { storeToRefs } from 'pinia';
 import { ref, computed, capitalize } from 'vue';
 import { useI18n } from 'vue-i18n';
 import IframeSpotify from '../iframes/spotify.vue';
+import type { SongCategoryHeaders } from '@/_types/requests';
+import type { SpecificPeopleSongs } from '@/_types/wedding-info';
+import type { useI18nType } from '@/plugins/i18n/vue-i18n';
+import { useWeddingInfo } from '@/stores/wedding-info';
 
 interface Properties {
   person: keyof SpecificPeopleSongs;
