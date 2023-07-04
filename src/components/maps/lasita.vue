@@ -34,10 +34,6 @@ import lasitaGeoJson from '@/json/lasita-geojson.json';
 // TODO: geolocation
 // TODO: text/tooltip on houses
 
-const vectorSource = new VectorSource({
-  features: new GeoJSON().readFeatures(lasitaGeoJson),
-});
-
 const mapElement = ref<HTMLDivElement>();
 const showOverlay = ref(false);
 
@@ -45,12 +41,18 @@ const { start: timeoutOverlayStart } = useTimeoutFn(() => {
   showOverlay.value = false;
 }, 3000);
 
+// --- VUE LIFECYCLE ---
 onMounted(() => {
+  initiateOpenLayer();
+});
+
+// --- FUNCTIONS ---
+function initiateOpenLayer() {
   useGeographic();
 
   const view = new View({ center: [26.3709, 58.3304], zoom: 18 });
   const map = new Map({
-    layers: getLayers(),
+    layers: makeLayers(),
     target: mapElement.value,
     view,
     interactions: interactionDefaults({
@@ -64,9 +66,13 @@ onMounted(() => {
     ]),
   });
   registerMapEvents(map);
-});
+}
 
-function getLayers(): BaseLayer[] | Collection<BaseLayer> | LayerGroup | undefined {
+function makeLayers(): BaseLayer[] | Collection<BaseLayer> | LayerGroup | undefined {
+  const vectorSource = new VectorSource({
+    features: new GeoJSON().readFeatures(lasitaGeoJson),
+  });
+
   const tileLayer = new TileLayer({
     source: new OSM(),
   });
@@ -76,6 +82,12 @@ function getLayers(): BaseLayer[] | Collection<BaseLayer> | LayerGroup | undefin
 
   return [tileLayer, vectorLayer];
 }
+// --- EVENTS ---
+function mapWheelEvent(event: WheelEvent) {
+  if (event.ctrlKey || event.altKey) return;
+  showOverlay.value = true;
+  timeoutOverlayStart();
+}
 
 function registerMapEvents(map: Map) {
   map.on('click', function (event) {
@@ -83,12 +95,6 @@ function registerMapEvents(map: Map) {
       console.log(feature);
     });
   });
-}
-
-function mapWheelEvent(event: WheelEvent) {
-  if (event.ctrlKey || event.altKey) return;
-  showOverlay.value = true;
-  timeoutOverlayStart();
 }
 </script>
 <style>
