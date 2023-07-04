@@ -20,7 +20,7 @@
         >
         <v-col cols="auto">
           <v-btn variant="tonal" @click="toUserLocation">
-            {{ t('maps.toMyLocation') }}
+            <Icon icon="mdi:map-marker-radius"></Icon>{{ t('maps.toMyLocation') }}
           </v-btn></v-col
         ></v-row
       ></v-container
@@ -41,13 +41,13 @@ import { useTimeoutFn } from '@vueuse/core';
 import Geolocation from 'ol/Geolocation.js';
 import { useI18n } from 'vue-i18n';
 import { Fill, Stroke, Style, Circle, Text } from 'ol/style';
+import { Icon } from '@iconify/vue';
 import lasitaGeoJson from '@/json/lasita-geojson.json';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 import { useGeolocation } from '@/composables/openlayers';
 // TODO: show people in house with overlay
 // TODO: require two fingers to move (MOBILE)
-// TODO: _icons for buttons?_/_replace text with icon, add tooltips_?
 
 const { t, locale } = useI18n<useI18nType>();
 
