@@ -1,6 +1,9 @@
 <template>
   <!-- TODO: use i18n -->
   <v-card title="LASITA" color="primary">
+    <v-card-text
+      ><p class="text-error" v-if="errorMessage">{{ errorMessage }}</p></v-card-text
+    >
     <v-container fluid>
       <div ref="mapElement" class="map h-[500px] relative" @wheel="mapWheelEvent"></div>
 
@@ -16,7 +19,7 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import { useGeographic } from 'ol/proj.js';
+import { useGeographic, type ProjectionLike } from 'ol/proj.js';
 import GeoJSON from 'ol/format/GeoJSON.js';
 import Map from 'ol/Map.js';
 import View from 'ol/View.js';
@@ -24,18 +27,20 @@ import { OSM, Vector as VectorSource } from 'ol/source.js';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer.js';
 import { onMounted, ref } from 'vue';
 import type BaseLayer from 'ol/layer/Base';
-import type LayerGroup from 'ol/layer/Group';
-import type Collection from 'ol/Collection';
 import { defaults as interactionDefaults, MouseWheelZoom } from 'ol/interaction';
 import { platformModifierKeyOnly, altKeyOnly } from 'ol/events/condition';
 import { useTimeoutFn } from '@vueuse/core';
+import Geolocation from 'ol/Geolocation.js';
+import { Point } from 'ol/geom';
+import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style.js';
+import Feature from 'ol/Feature';
 import lasitaGeoJson from '@/json/lasita-geojson.json';
 // TODO: redirect to house view on house click
-// TODO: geolocation
 // TODO: text/tooltip on houses
 
 const mapElement = ref<HTMLDivElement>();
 const showOverlay = ref(false);
+const errorMessage = ref('');
 
 const { start: timeoutOverlayStart } = useTimeoutFn(() => {
   showOverlay.value = false;
@@ -51,8 +56,11 @@ function initiateOpenLayer() {
   useGeographic();
 
   const view = new View({ center: [26.3709, 58.3304], zoom: 18 });
+  // `EPSG:4326` due to useGeographic();
+  const geolocation = makeGeolocation('EPSG:4326');
+
   const map = new Map({
-    layers: makeLayers(),
+    layers: [...makeLayers(), geolocation.layer],
     target: mapElement.value,
     view,
     interactions: interactionDefaults({
@@ -68,7 +76,7 @@ function initiateOpenLayer() {
   registerMapEvents(map);
 }
 
-function makeLayers(): BaseLayer[] | Collection<BaseLayer> | LayerGroup | undefined {
+function makeLayers(): BaseLayer[] {
   const vectorSource = new VectorSource({
     features: new GeoJSON().readFeatures(lasitaGeoJson),
   });
@@ -81,6 +89,58 @@ function makeLayers(): BaseLayer[] | Collection<BaseLayer> | LayerGroup | undefi
   });
 
   return [tileLayer, vectorLayer];
+}
+function makeGeolocation(projection: ProjectionLike) {
+  const geolocation = new Geolocation({
+    trackingOptions: {
+      enableHighAccuracy: true,
+    },
+    projection,
+    tracking: true,
+  });
+
+  // FEATURES
+  const accuracyFeature = new Feature();
+  const positionFeature = new Feature();
+  positionFeature.setStyle(
+    new Style({
+      image: new CircleStyle({
+        radius: 6,
+        fill: new Fill({
+          color: '#3399CC',
+        }),
+        stroke: new Stroke({
+          color: '#fff',
+          width: 2,
+        }),
+      }),
+    }),
+  );
+
+  // EVENTS
+  geolocation.on('error', function (error) {
+    console.error(error);
+    // TODO: internationalization
+    errorMessage.value = error.message;
+  });
+  geolocation.on('change:accuracyGeometry', function () {
+    const accuracyGeometry = geolocation.getAccuracyGeometry();
+    if (!accuracyGeometry) return;
+    accuracyFeature.setGeometry(accuracyGeometry);
+  });
+
+  geolocation.on('change:position', function () {
+    const coordinates = geolocation.getPosition();
+    if (!coordinates) return;
+    positionFeature.setGeometry(new Point(coordinates));
+  });
+
+  const layer = new VectorLayer({
+    source: new VectorSource({
+      features: [accuracyFeature, positionFeature],
+    }),
+  });
+  return { layer };
 }
 // --- EVENTS ---
 function mapWheelEvent(event: WheelEvent) {
