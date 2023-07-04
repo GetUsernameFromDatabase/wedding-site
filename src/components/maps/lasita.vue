@@ -1,7 +1,18 @@
 <template>
   <!-- TODO: use i18n -->
   <v-card title="LASITA" color="primary">
-    <div ref="mapElement" class="map h-[500px]"></div>
+    <v-container fluid>
+      <div ref="mapElement" class="map h-[500px] relative" @wheel="mapWheelEvent"></div>
+
+      <v-overlay
+        v-model="showOverlay"
+        contained
+        class="align-center justify-center"
+        :attach="mapElement"
+      >
+        <p class="text-2xl text-white">Use ctrl+scroll to zoom the map</p></v-overlay
+      >
+    </v-container>
   </v-card>
 </template>
 <script setup lang="ts">
@@ -15,8 +26,10 @@ import { onMounted, ref } from 'vue';
 import type BaseLayer from 'ol/layer/Base';
 import type LayerGroup from 'ol/layer/Group';
 import type Collection from 'ol/Collection';
+import { defaults as interactionDefaults, MouseWheelZoom } from 'ol/interaction';
+import { platformModifierKeyOnly, altKeyOnly } from 'ol/events/condition';
+import { useTimeoutFn } from '@vueuse/core';
 import lasitaGeoJson from '@/json/lasita-geojson.json';
-// TODO: disable zoom like google iframe does
 // TODO: redirect to house view on house click
 // TODO: geolocation
 // TODO: text/tooltip on houses
@@ -26,6 +39,11 @@ const vectorSource = new VectorSource({
 });
 
 const mapElement = ref<HTMLDivElement>();
+const showOverlay = ref(false);
+
+const { start: timeoutOverlayStart } = useTimeoutFn(() => {
+  showOverlay.value = false;
+}, 3000);
 
 onMounted(() => {
   useGeographic();
@@ -35,6 +53,15 @@ onMounted(() => {
     layers: getLayers(),
     target: mapElement.value,
     view,
+    interactions: interactionDefaults({
+      mouseWheelZoom: false,
+    }).extend([
+      new MouseWheelZoom({
+        condition: function (event) {
+          return platformModifierKeyOnly(event) || altKeyOnly(event);
+        },
+      }),
+    ]),
   });
   registerMapEvents(map);
 });
@@ -56,6 +83,12 @@ function registerMapEvents(map: Map) {
       console.log(feature);
     });
   });
+}
+
+function mapWheelEvent(event: WheelEvent) {
+  if (event.ctrlKey || event.altKey) return;
+  showOverlay.value = true;
+  timeoutOverlayStart();
 }
 </script>
 <style>
