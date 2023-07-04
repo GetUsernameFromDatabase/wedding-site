@@ -1,7 +1,6 @@
 <template>
   <div>
     <WeddingMaps :initial-panels="[0]"></WeddingMaps>
-    <MapLasita></MapLasita>
 
     <v-divider class="my-1"></v-divider>
 
@@ -27,7 +26,6 @@ import { storeToRefs } from 'pinia';
 import type { useI18nType } from '../plugins/i18n/vue-i18n';
 import { useWeddingInfo } from '@/stores/wedding-info';
 import { useIcons } from '@/composables/icons';
-import MapLasita from '@/components/maps/lasita.vue';
 import WeddingMaps from '@/components/expansion-panels/wedding-maps.vue';
 
 const { t } = useI18n<useI18nType>();

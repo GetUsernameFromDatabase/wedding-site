@@ -1,32 +1,31 @@
 <template>
-  <v-card color="primary">
-    <v-card-title
-      ><div class="flex justify-center w-full">
-        {{ t('maps.lasita') }}
-      </div></v-card-title
-    >
-    <v-card-text
-      ><p class="text-error" v-if="geolocationErrorMessage">
-        {{ geolocationErrorMessageDisplay }}
-      </p></v-card-text
-    >
-    <v-container fluid>
-      <div ref="mapElement" class="map h-[500px] relative" @wheel="mapWheelEvent"></div>
+  <div>
+    <p class="text-error" v-if="geolocationErrorMessage">
+      {{ geolocationErrorMessageDisplay }}
+    </p>
+    <div ref="mapElement" class="map h-[500px] relative" @wheel="mapWheelEvent"></div>
 
-      <v-overlay
-        v-model="showOverlay"
-        contained
-        class="align-center justify-center"
-        :attach="mapElement"
-      >
-        <p class="text-2xl text-white">{{ t('message.ctrlzoom') }}</p></v-overlay
-      >
-    </v-container>
-    <v-card-actions>
-      <v-btn variant="tonal" @click="resetView"> {{ t('maps.resetView') }} </v-btn>
-      <v-btn variant="tonal" @click="toUserLocation"> {{ t('maps.toMyLocation') }} </v-btn>
-    </v-card-actions>
-  </v-card>
+    <v-overlay
+      v-model="showOverlay"
+      contained
+      class="align-center justify-center"
+      :attach="mapElement"
+    >
+      <p class="text-2xl text-white">{{ t('message.ctrlzoom') }}</p></v-overlay
+    >
+    <v-container>
+      <v-row justify="center" align="center"
+        ><v-col cols="auto">
+          <v-btn variant="tonal" @click="resetView"> {{ t('maps.resetView') }} </v-btn></v-col
+        >
+        <v-col cols="auto">
+          <v-btn variant="tonal" @click="toUserLocation">
+            {{ t('maps.toMyLocation') }}
+          </v-btn></v-col
+        ></v-row
+      ></v-container
+    >
+  </div>
 </template>
 <script setup lang="ts">
 import { useGeographic, type ProjectionLike } from 'ol/proj.js';
