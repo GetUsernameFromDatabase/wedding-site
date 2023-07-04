@@ -20,6 +20,7 @@ import { ref } from 'vue';
 // TODO: disable zoom like google iframe does
 // TODO: redirect to house view on house click
 // TODO: geolocation
+// TODO: text/tooltip on houses
 
 const vectorSource = new VectorSource({
   features: new GeoJSON().readFeatures(lasitaGeoJson),
