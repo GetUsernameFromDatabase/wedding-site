@@ -39,8 +39,8 @@ export const useAgenda: AgendaItem[] = [
     slidePictures: ['https://cooppolva.ee/wp-content/uploads/2019/11/M%C3%A4rja-Coop-Konsum.png'],
   },
   {
-    text: 'agenda.final',
-    icon: useIcons.final.vuetify,
+    text: 'agenda.lasita',
+    icon: useIcons.lasita.vuetify,
     href: 'https://www.facebook.com/people/Lasita-Puhkemaja-O%C3%9C/100063769771377/',
     slidePictures: [
       'https://visittartu.com/sites/default/files/vemedia/84220_ebf3147a22ac59b46c9288c6db78f82e.jpg',

@@ -52,7 +52,7 @@ const estonianLocale = {
     etAgriMuseum: 'Eesti Põllumajandusmuuseum',
     home: 'Kivimi',
     shop: 'Märja Konsum',
-    final: 'Lasita Puhkemaja',
+    lasita: 'Lasita Puhkemaja',
   },
   ryan: {
     description: 'Endast rääkida ei meeldi. Lihtsalt teen asju.',
@@ -100,7 +100,7 @@ export const availableLocales: AvailableLocales = {
       etAgriMuseum: 'Estonian Agricultural Museum',
       home: 'Kivimi',
       shop: 'Märja Konsum',
-      final: 'Lasita Vacation House',
+      lasita: 'Lasita Vacation House',
     },
     ryan: {
       description: "Don't like to talk about myself much. I just do stuff.",

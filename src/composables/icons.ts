@@ -12,7 +12,7 @@ type AvailableIcons =
   | 'etAgriMuseum'
   | 'kivimi'
   | 'shop'
-  | 'final'
+  | 'lasita'
   | 'maps'
   | 'home';
 
@@ -25,7 +25,7 @@ export const useIcons: Record<AvailableIcons, IconComposableItem> = {
   etAgriMuseum: { iconify: '', vuetify: 'mdi-horseshoe' },
   kivimi: { iconify: '', vuetify: 'mdi-grass' },
   shop: { iconify: '', vuetify: 'mdi-shopping' },
-  final: { iconify: '', vuetify: 'mdi-glass-flute' },
+  lasita: { iconify: '', vuetify: 'mdi-glass-flute' },
   maps: { iconify: '', vuetify: 'mdi-map-outline' },
   home: { iconify: '', vuetify: 'mdi-home' },
 };
