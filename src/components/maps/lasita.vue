@@ -40,13 +40,11 @@ import { defaults as interactionDefaults, MouseWheelZoom } from 'ol/interaction'
 import { platformModifierKeyOnly, altKeyOnly } from 'ol/events/condition';
 import { useTimeoutFn } from '@vueuse/core';
 import Geolocation from 'ol/Geolocation.js';
-import { Point } from 'ol/geom';
-import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style.js';
-import Feature from 'ol/Feature';
 import { useI18n } from 'vue-i18n';
 import lasitaGeoJson from '@/json/lasita-geojson.json';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
+import { useGeolocation } from '@/composables/openlayers';
 // TODO: redirect to house view on house click
 // TODO: text/tooltip on houses
 
@@ -121,55 +119,11 @@ function makeLayers(): BaseLayer[] {
   return [tileLayer, vectorLayer];
 }
 function makeGeolocation(projection: ProjectionLike) {
-  const geolocation = new Geolocation({
-    trackingOptions: {
-      enableHighAccuracy: true,
-    },
-    projection,
-    tracking: true,
-  });
-
-  // FEATURES
-  const accuracyFeature = new Feature();
-  const positionFeature = new Feature();
-  positionFeature.setStyle(
-    new Style({
-      image: new CircleStyle({
-        radius: 6,
-        fill: new Fill({
-          color: '#3399CC',
-        }),
-        stroke: new Stroke({
-          color: '#fff',
-          width: 2,
-        }),
-      }),
-    }),
-  );
-
-  // EVENTS
-  geolocation.on('error', function (error) {
-    console.error(error);
+  const geolocation = useGeolocation(projection);
+  geolocation.geolocation.on('error', function (error) {
     geolocationErrorMessage.value = error.message;
   });
-  geolocation.on('change:accuracyGeometry', function () {
-    const accuracyGeometry = geolocation.getAccuracyGeometry();
-    if (!accuracyGeometry) return;
-    accuracyFeature.setGeometry(accuracyGeometry);
-  });
-
-  geolocation.on('change:position', function () {
-    const coordinates = geolocation.getPosition();
-    if (!coordinates) return;
-    positionFeature.setGeometry(new Point(coordinates));
-  });
-
-  const layer = new VectorLayer({
-    source: new VectorSource({
-      features: [accuracyFeature, positionFeature],
-    }),
-  });
-  return { geolocation, layer };
+  return geolocation;
 }
 // --- EVENTS ---
 function mapWheelEvent(event: WheelEvent) {
