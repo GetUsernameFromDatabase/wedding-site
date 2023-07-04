@@ -46,7 +46,7 @@ const estonianLocale = {
     ourLocation: 'Meie Asukoht',
     lasita: '@:agenda.lasita Kaart',
     resetView: 'Lähtesta Vaade',
-    toMyLocation: 'Minu Asukoht',
+    toMyLocation: 'Praegune Asukoht',
   },
   agenda: {
     title: 'Päevakord',
@@ -114,7 +114,7 @@ export const availableLocales: AvailableLocales = {
       ourLocation: 'Our Location',
       lasita: '@:agenda.lasita Map',
       resetView: 'Reset View',
-      toMyLocation: 'My Location',
+      toMyLocation: 'Current Location',
     },
     agenda: {
       title: 'Agenda',
