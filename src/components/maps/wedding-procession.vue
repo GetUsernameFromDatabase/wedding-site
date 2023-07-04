@@ -28,7 +28,7 @@
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import GoogleMaps from './iframes/google-maps.vue';
+import GoogleMaps from '@/components/iframes/google-maps.vue';
 import { useWeddingInfo } from '@/stores/wedding-info';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 

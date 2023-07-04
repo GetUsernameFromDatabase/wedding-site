@@ -73,7 +73,7 @@ import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
 import IframeSpotify from '@/components/iframes/spotify.vue';
 import shortDescriptionVue from '@/components/person/short-description.vue';
-import WeddingProcession from '@/components/wedding-procession.vue';
+import WeddingProcession from '@/components/maps/wedding-procession.vue';
 import { useAgenda as agenda } from '@/composables/agenda';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 
