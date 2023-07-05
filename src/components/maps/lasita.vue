@@ -163,14 +163,17 @@ function makeGeolocation(projection: ProjectionLike) {
   return geolocation;
 }
 // --- EVENTS ---
-function mapWheelEvent(event: WheelEvent) {
-  if (event.ctrlKey || event.altKey) {
+function restrictMapUsageEvent(event: Event, disableOverlayCondition: boolean) {
+  if (disableOverlayCondition) {
     event.preventDefault();
     showOverlay.value = false;
     return;
   }
   showOverlay.value = true;
   timeoutOverlayStart();
+}
+function mapWheelEvent(event: WheelEvent) {
+  restrictMapUsageEvent(event, event.ctrlKey || event.altKey);
 }
 
 function registerMapEvents(map: Map) {
