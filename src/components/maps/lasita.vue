@@ -52,6 +52,8 @@ import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 import { useGeolocation } from '@/composables/openlayers';
 // TODO: show people in house with overlay
+// TODO: fix initial touch moving map
+// TODO: fix overlay p element not centered on small screen
 
 const { t, locale } = useI18n<useI18nType>();
 
