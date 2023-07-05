@@ -11,7 +11,7 @@
       class="align-center justify-center"
       :attach="mapElement"
     >
-      <p class="text-2xl text-white">{{ t(overlayMessage) }}</p></v-overlay
+      <p class="text-2xl text-white text-center">{{ t(overlayMessage) }}</p></v-overlay
     >
     <v-container>
       <v-row justify="center" align="center"
@@ -47,7 +47,6 @@ import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 import { useGeolocation } from '@/composables/openlayers';
 // TODO: show people in house with overlay
-// TODO: fix overlay p element not centered on small screen
 
 const { t, locale } = useI18n<useI18nType>();
 
