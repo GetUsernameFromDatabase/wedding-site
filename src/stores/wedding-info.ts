@@ -1,10 +1,26 @@
 import axios from 'axios';
 import { defineStore, type Store } from 'pinia';
 import { parse, type Options } from 'csv-parse/browser/esm/sync';
-import type { MapLinksParsed, SongCategoryHeaders, SongHeaders } from '@/_types/requests';
+import type {
+  MapLinksParsed,
+  SongCategoryHeaders,
+  SongHeaders,
+  PeopleInfoHeaders,
+  MapLinkHeaders,
+} from '@/_types/requests';
 import type { PersonSongs } from '@/_types/wedding-info';
 
-const csvSources = {
+interface WeddingInfoState {
+  mapLinks: MapLinksParsed;
+  songCategories: { [key: string]: SongCategoryHeaders };
+  songs: SongHeaders[];
+  isInitiated: boolean;
+  peopleInfo: { [key: string]: PeopleInfoHeaders };
+}
+
+type WeddingInfoSources = Record<keyof Omit<WeddingInfoState, 'isInitiated'>, string>;
+
+const csvSources: WeddingInfoSources = {
   mapLinks:
     'https://docs.google.com/spreadsheets/d/e/2PACX-1vT2TZnFzaS96BT8muIZT3zM5CCQqZ3iQk3tzfqtUsobPYDG4QvM74N42tAQcYY2dgG7IF6V8WKUFPCL/pub?gid=0&single=true&output=csv',
   songCategories:
@@ -30,12 +46,8 @@ async function csvFetchAndLog<T>(
   return parsedCSV;
 }
 
-interface WeddingInfoState {
-  mapLinks: MapLinksParsed;
-  songCategories: { [key: string]: SongCategoryHeaders };
-  songs: SongHeaders[];
-  isInitiated: boolean;
-  peopleInfo: { [key: string]: SongCategoryHeaders };
+function ensureWeddingInfoStateKey<K extends keyof WeddingInfoSources>(text: K) {
+  return text;
 }
 
 export const useWeddingInfo = async () => {
@@ -53,34 +65,34 @@ export const useWeddingInfo = async () => {
     }),
     actions: {
       async updateMapLinks() {
-        const parsedCSV = await csvFetchAndLog<WeddingInfoState['mapLinks']>('mapLinks', this, {
-          columns: true,
-          objname: 'NAME',
-        });
+        const key = ensureWeddingInfoStateKey('mapLinks');
+        type ParseType = WeddingInfoState[typeof key];
+
+        const objname: keyof MapLinkHeaders = 'NAME';
+        const parsedCSV = await csvFetchAndLog<ParseType>(key, this, { columns: true, objname });
         this.mapLinks = parsedCSV;
       },
       async updateSongCategories() {
-        const parsedCSV = await csvFetchAndLog<WeddingInfoState['songCategories']>(
-          'songCategories',
-          this,
-          {
-            columns: true,
-            objname: 'SONG-CATEGORY',
-          },
-        );
+        const key = ensureWeddingInfoStateKey('songCategories');
+        type ParseType = WeddingInfoState[typeof key];
+
+        const objname: keyof SongCategoryHeaders = 'SONG-CATEGORY';
+        const parsedCSV = await csvFetchAndLog<ParseType>(key, this, { columns: true, objname });
         this.songCategories = parsedCSV;
       },
       async updateSongs() {
-        const parsedCSV = await csvFetchAndLog<WeddingInfoState['songs']>('songs', this, {
-          columns: true,
-        });
+        const key = ensureWeddingInfoStateKey('songs');
+        type ParseType = WeddingInfoState[typeof key];
+
+        const parsedCSV = await csvFetchAndLog<ParseType>(key, this, { columns: true });
         this.songs = parsedCSV;
       },
       async updatePeopleInfo() {
-        const parsedCSV = await csvFetchAndLog<WeddingInfoState['peopleInfo']>('peopleInfo', this, {
-          columns: true,
-          objname: 'PERSON',
-        });
+        const key = ensureWeddingInfoStateKey('peopleInfo');
+        type ParseType = WeddingInfoState[typeof key];
+
+        const objname: keyof PeopleInfoHeaders = 'PERSON';
+        const parsedCSV = await csvFetchAndLog<ParseType>(key, this, { columns: true, objname });
         this.peopleInfo = parsedCSV;
       },
       async initiate() {
