@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 252.32 253.46">
+  <g id="Layer_1-2" data-name="Layer 1">
+    <rect id="tuba-5" x=".5" y=".5" width="251.32" height="251.32" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+    <g>
+      <rect x="4.6" y="186.91" width="73.77" height="61.14" rx="6.32" ry="6.32" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="10.28" y="192.97" width="10.23" height="21.34" rx="3.51" ry="3.51" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="10.28" y="221.91" width="10.23" height="21.34" rx="3.51" ry="3.51" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+    </g>
+    <g>
+      <rect x="4.6" y="117.48" width="73.77" height="61.14" rx="6.32" ry="6.32" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="10.28" y="123.54" width="10.23" height="21.34" rx="3.51" ry="3.51" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="10.28" y="152.48" width="10.23" height="21.34" rx="3.51" ry="3.51" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+    </g>
+    <g>
+      <rect x="-1.72" y="11.55" width="73.77" height="61.14" rx="6.32" ry="6.32" transform="translate(77.28 6.95) rotate(90)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="43.89" y="5.36" width="10.23" height="21.34" rx="3.51" ry="3.51" transform="translate(65.03 -32.97) rotate(90)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="14.95" y="5.36" width="10.23" height="21.34" rx="3.51" ry="3.51" transform="translate(36.09 -4.03) rotate(90)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+    </g>
+    <g>
+      <rect x="180.25" y="11.07" width="73.77" height="61.14" rx="6.32" ry="6.32" transform="translate(258.78 -175.5) rotate(90)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="225.86" y="4.88" width="10.23" height="21.34" rx="3.51" ry="3.51" transform="translate(246.53 -215.42) rotate(90)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="196.92" y="4.88" width="10.23" height="21.34" rx="3.51" ry="3.51" transform="translate(217.59 -186.48) rotate(90)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+    </g>
+    <g>
+      <rect x="173.3" y="186.43" width="73.77" height="61.14" rx="6.32" ry="6.32" transform="translate(420.37 434) rotate(-180)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="231.15" y="192.5" width="10.23" height="21.34" rx="3.51" ry="3.51" transform="translate(472.54 406.33) rotate(-180)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="231.15" y="221.44" width="10.23" height="21.34" rx="3.51" ry="3.51" transform="translate(472.54 464.22) rotate(-180)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+    </g>
+    <g>
+      <rect x="173.3" y="117" width="73.77" height="61.14" rx="6.32" ry="6.32" transform="translate(420.37 295.14) rotate(-180)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="231.15" y="123.07" width="10.23" height="21.34" rx="3.51" ry="3.51" transform="translate(472.54 267.47) rotate(-180)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <rect x="231.15" y="152.01" width="10.23" height="21.34" rx="3.51" ry="3.51" transform="translate(472.54 325.35) rotate(-180)" style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"/>
+    </g>
+    <rect x="125.02" y="233.25" width="2.27" height="37.14" transform="translate(-125.66 377.98) rotate(-90)" style="fill: #231f20; stroke: #231f20; stroke-miterlimit: 10;"/>
+    <g>
+      <text transform="translate(119.3 111.87)" style="fill: #231f20; font-family: MyriadPro-Regular, &apos;Myriad Pro&apos;; font-size: 28px;"><tspan x="0" y="0">5</tspan></text>
+      <circle cx="125.83" cy="103" r="15.33" style="fill: none; stroke: #231f20; stroke-miterlimit: 10;"/>
+    </g>
+  </g>
+</svg>
