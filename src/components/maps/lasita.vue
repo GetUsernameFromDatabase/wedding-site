@@ -72,7 +72,7 @@ const geolocationErrorMessageDisplay = computed(() => {
 
 const { start: timeoutOverlayStart } = useTimeoutFn(() => {
   showOverlay.value = false;
-}, 300_000);
+}, 2000);
 
 watch(locale, () => {
   map?.redrawText();
