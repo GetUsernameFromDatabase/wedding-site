@@ -35,3 +35,8 @@ export interface SongHeaders {
    * */
   'SONG-INFO': string;
 }
+
+export interface PeopleInfoHeaders {
+  PERSON: string;
+  'ROOM-ID': string;
+}

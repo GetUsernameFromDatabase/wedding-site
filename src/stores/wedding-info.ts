@@ -11,6 +11,8 @@ const csvSources = {
     'https://docs.google.com/spreadsheets/d/e/2PACX-1vT2TZnFzaS96BT8muIZT3zM5CCQqZ3iQk3tzfqtUsobPYDG4QvM74N42tAQcYY2dgG7IF6V8WKUFPCL/pub?gid=1913930644&single=true&output=csv',
   songs:
     'https://docs.google.com/spreadsheets/d/e/2PACX-1vT2TZnFzaS96BT8muIZT3zM5CCQqZ3iQk3tzfqtUsobPYDG4QvM74N42tAQcYY2dgG7IF6V8WKUFPCL/pub?gid=1679195903&single=true&output=csv',
+  peopleInfo:
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vT2TZnFzaS96BT8muIZT3zM5CCQqZ3iQk3tzfqtUsobPYDG4QvM74N42tAQcYY2dgG7IF6V8WKUFPCL/pub?gid=1788616748&single=true&output=csv',
 };
 
 async function csvFetch<T>(url: string, parseOptions: Options = {}) {
@@ -33,6 +35,7 @@ interface WeddingInfoState {
   songCategories: { [key: string]: SongCategoryHeaders };
   songs: SongHeaders[];
   isInitiated: boolean;
+  peopleInfo: { [key: string]: SongCategoryHeaders };
 }
 
 export const useWeddingInfo = async () => {
@@ -46,6 +49,7 @@ export const useWeddingInfo = async () => {
       songCategories: {},
       songs: [],
       isInitiated: false,
+      peopleInfo: {},
     }),
     actions: {
       async updateMapLinks() {
@@ -72,11 +76,23 @@ export const useWeddingInfo = async () => {
         });
         this.songs = parsedCSV;
       },
+      async updatePeopleInfo() {
+        const parsedCSV = await csvFetchAndLog<WeddingInfoState['peopleInfo']>('peopleInfo', this, {
+          columns: true,
+          objname: 'PERSON',
+        });
+        this.peopleInfo = parsedCSV;
+      },
       async initiate() {
         if (this.isInitiated) return;
         this.isInitiated = true;
 
-        const promises = [this.updateMapLinks(), this.updateSongCategories(), this.updateSongs()];
+        const promises = [
+          this.updateMapLinks(),
+          this.updateSongCategories(),
+          this.updateSongs(),
+          this.updatePeopleInfo(),
+        ];
         return await Promise.all(promises).then((values) => {
           return values;
         });
