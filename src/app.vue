@@ -58,78 +58,38 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useTheme } from 'vuetify';
 import { useTitle } from '@vueuse/core';
 import { Icon } from '@iconify/vue';
-import type { RouteList, SimpleRoute, ViewableRoute } from './_types/routes';
 import type { useI18nType } from './plugins/i18n/vue-i18n';
-import { View404, ViewHousing, ViewIndex, ViewMaps, ViewMarion, ViewRyan } from './views';
 import { marionTheme, myMainTheme, ryanTheme } from './plugins/vuetify/themes';
 import { usePeople } from './composables/people';
 import LanguageSelect from './components/language-select.vue';
 import { useIcons } from './composables/icons';
+import { useCustomRouting } from './composables/routing';
 
 const { t, locale } = useI18n<useI18nType>();
 const theme = useTheme();
-
 const people = usePeople();
-// --- ROUTING
-const routes: RouteList = [
-  {
-    type: 'nav',
-    route: '/',
-    component: ViewIndex,
-    icon: useIcons.home.vuetify,
-    translateKey: 'navigation.home',
-  },
-  {
-    type: 'nav',
-    route: '/maps',
-    component: ViewMaps,
-    icon: useIcons.maps.vuetify,
-    translateKey: 'navigation.maps',
-  },
-  {
-    type: 'nav',
-    route: '/housing',
-    component: ViewHousing,
-    icon: useIcons.housing.vuetify,
-    translateKey: 'navigation.housing',
-  },
-  { type: 'simple', route: people.ryan.value.href.slice(1), component: ViewRyan },
-  { type: 'simple', route: people.marion.value.href.slice(1), component: ViewMarion },
-  { type: 'divider' },
-];
-const currentPath = ref(window.location.hash);
-
-const currentView = computed(() => {
-  const currentRoute = currentPath.value.slice(1) || '/';
-  const routeIndex = routes.findIndex((value) => {
-    if (value.type === 'divider') return false;
-    return value.route === currentRoute;
-  });
-  if (routeIndex < 0) {
-    const notFound: Pick<SimpleRoute, 'component'> = { component: View404 };
-    return notFound;
-  }
-  return routes[routeIndex] as ViewableRoute;
-});
-// ---
+const { currentPath, currentView, routes } = useCustomRouting();
 
 const showDrawer = ref(false);
 const vMainScroller = ref<Element | null>();
 
+// --- VUE WATCHERS ---
+watch(currentPath, pathChanged);
+watch(locale, localeChanged, { immediate: true });
+
+// --- VUE LIFECYCLE ---
 onMounted(() => {
   changeThemeAccordingToPath();
   window.addEventListener('hashchange', changeThemeAccordingToPath);
   vMainScroller.value = document.querySelector('div.v-main__scroller');
 });
 
-watch(currentPath, pathChanged);
-watch(locale, localeChanged, { immediate: true });
-
+// --- FUNCTIONS ---
 function changeThemeAccordingToPath() {
   currentPath.value = window.location.hash;
   if (currentPath.value.includes('ryan')) {
