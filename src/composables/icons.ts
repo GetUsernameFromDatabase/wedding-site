@@ -14,7 +14,8 @@ type AvailableIcons =
   | 'shop'
   | 'lasita'
   | 'maps'
-  | 'home';
+  | 'home'
+  | 'housing';
 
 export const useIcons: Record<AvailableIcons, IconComposableItem> = {
   contactPhone: { iconify: 'mdi:phone', vuetify: '' },
@@ -28,4 +29,5 @@ export const useIcons: Record<AvailableIcons, IconComposableItem> = {
   lasita: { iconify: '', vuetify: 'mdi-glass-flute' },
   maps: { iconify: '', vuetify: 'mdi-map-outline' },
   home: { iconify: '', vuetify: 'mdi-home' },
+  housing: { iconify: '', vuetify: 'mdi-home-account' },
 };

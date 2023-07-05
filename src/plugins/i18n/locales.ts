@@ -36,6 +36,7 @@ const estonianLocale = {
     maps: 'Kaardid',
     home: 'Koduleht',
     explore: 'Uuri Rohkem',
+    housing: 'Majutus',
   },
   c404: {
     ohno: 'Oh, issand',
@@ -105,6 +106,7 @@ export const availableLocales: AvailableLocales = {
       maps: 'Maps',
       home: 'Home',
       explore: 'Learn More',
+      housing: 'Housing',
     },
     c404: {
       ohno: 'Uh, Ohh',

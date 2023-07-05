@@ -65,7 +65,7 @@ import { useTitle } from '@vueuse/core';
 import { Icon } from '@iconify/vue';
 import type { RouteList, SimpleRoute, ViewableRoute } from './_types/routes';
 import type { useI18nType } from './plugins/i18n/vue-i18n';
-import { View404, ViewIndex, ViewMaps, ViewMarion, ViewRyan } from './views';
+import { View404, ViewHousing, ViewIndex, ViewMaps, ViewMarion, ViewRyan } from './views';
 import { marionTheme, myMainTheme, ryanTheme } from './plugins/vuetify/themes';
 import { usePeople } from './composables/people';
 import LanguageSelect from './components/language-select.vue';
@@ -90,6 +90,13 @@ const routes: RouteList = [
     component: ViewMaps,
     icon: useIcons.maps.vuetify,
     translateKey: 'navigation.maps',
+  },
+  {
+    type: 'nav',
+    route: '/housing',
+    component: ViewHousing,
+    icon: useIcons.housing.vuetify,
+    translateKey: 'navigation.housing',
   },
   { type: 'simple', route: people.ryan.value.href.slice(1), component: ViewRyan },
   { type: 'simple', route: people.marion.value.href.slice(1), component: ViewMarion },
