@@ -3,12 +3,7 @@
     <p class="text-error" v-if="geolocationErrorMessage">
       {{ geolocationErrorMessageDisplay }}
     </p>
-    <div
-      ref="mapElement"
-      class="map h-[500px] relative"
-      @wheel="mapWheelEvent"
-      @touchstart="mapTouchEvent"
-    ></div>
+    <div ref="mapElement" class="map h-[500px] relative" @wheel="mapWheelEvent"></div>
 
     <v-overlay
       v-model="showOverlay"
@@ -52,7 +47,6 @@ import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 import { useGeolocation } from '@/composables/openlayers';
 // TODO: show people in house with overlay
-// TODO: fix initial touch moving map
 // TODO: fix overlay p element not centered on small screen
 
 const { t, locale } = useI18n<useI18nType>();
@@ -79,7 +73,7 @@ const geolocationErrorMessageDisplay = computed(() => {
 
 const { start: timeoutOverlayStart } = useTimeoutFn(() => {
   showOverlay.value = false;
-}, 3000);
+}, 300_000);
 
 watch(locale, () => {
   map?.redrawText();
@@ -169,24 +163,30 @@ function makeGeolocation(projection: ProjectionLike) {
   });
   return geolocation;
 }
-// --- EVENTS ---
-function restrictMapUsageEvent(event: Event, disableOverlayCondition: boolean) {
-  if (disableOverlayCondition) {
-    event.preventDefault();
-    showOverlay.value = false;
-    return;
-  }
+
+function setShowOverlayTrue() {
   showOverlay.value = true;
   timeoutOverlayStart();
 }
+
+function setShowOverlayFalse(event: Event) {
+  event.preventDefault();
+  showOverlay.value = false;
+}
+// --- EVENTS ---
 function mapWheelEvent(event: WheelEvent) {
   overlayMessage.value = 'message.ctrlzoom';
-  restrictMapUsageEvent(event, event.ctrlKey || event.altKey);
+  if (event.ctrlKey || event.altKey) setShowOverlayFalse(event);
+  else setShowOverlayTrue();
 }
 
-function mapTouchEvent(event: TouchEvent) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function mapTouchEvent(event: PointerEvent) {
+  // TODO: preventing mobile touch properly
   overlayMessage.value = 'message.use2fingers';
-  restrictMapUsageEvent(event, event.touches.length > 1);
+  console.log(event);
+  if (event.isPrimary) setShowOverlayTrue();
+  else setShowOverlayFalse(event);
 }
 
 function registerMapEvents(map: Map) {
