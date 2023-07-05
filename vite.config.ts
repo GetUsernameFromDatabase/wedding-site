@@ -7,7 +7,7 @@ import svgLoader from 'vite-svg-loader';
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/wedding-site/',
-  plugins: [vue(), vuetify({ autoImport: true }), svgLoader()],
+  plugins: [vue(), vuetify({ autoImport: true }), svgLoader({ svgo: false })],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),
