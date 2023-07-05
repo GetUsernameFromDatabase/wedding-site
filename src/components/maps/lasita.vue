@@ -42,7 +42,7 @@ import Geolocation from 'ol/Geolocation.js';
 import { useI18n } from 'vue-i18n';
 import { Fill, Stroke, Style, Circle, Text } from 'ol/style';
 import { Icon } from '@iconify/vue';
-import lasitaGeoJson from '@/json/lasita-geojson.json';
+import lasitaGeoJson from '@/assets/lasita-geojson.json';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 import { useGeolocation } from '@/composables/openlayers';
