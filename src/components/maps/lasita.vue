@@ -3,7 +3,12 @@
     <p class="text-error" v-if="geolocationErrorMessage">
       {{ geolocationErrorMessageDisplay }}
     </p>
-    <div ref="mapElement" class="map h-[500px] relative" @wheel="mapWheelEvent"></div>
+    <div
+      ref="mapElement"
+      class="map h-[500px] relative"
+      @wheel="mapWheelEvent"
+      @touchstart="mapTouchEvent"
+    ></div>
 
     <v-overlay
       v-model="showOverlay"
@@ -11,7 +16,7 @@
       class="align-center justify-center"
       :attach="mapElement"
     >
-      <p class="text-2xl text-white">{{ t('message.ctrlzoom') }}</p></v-overlay
+      <p class="text-2xl text-white">{{ t(overlayMessage) }}</p></v-overlay
     >
     <v-container>
       <v-row justify="center" align="center"
@@ -47,7 +52,6 @@ import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 import { useGeolocation } from '@/composables/openlayers';
 // TODO: show people in house with overlay
-// TODO: require two fingers to move (MOBILE)
 
 const { t, locale } = useI18n<useI18nType>();
 
@@ -61,6 +65,7 @@ let geolocation: Geolocation | undefined;
 const mapElement = ref<HTMLDivElement>();
 const showOverlay = ref(false);
 const geolocationErrorMessage = ref('');
+const overlayMessage = ref<AllMessageSchemaKeys>('message.ctrlzoom');
 
 const geolocationErrorMessageDisplay = computed(() => {
   const translateRoot: AllMessageSchemaKeys = 'errors.geolocation';
@@ -173,7 +178,13 @@ function restrictMapUsageEvent(event: Event, disableOverlayCondition: boolean) {
   timeoutOverlayStart();
 }
 function mapWheelEvent(event: WheelEvent) {
+  overlayMessage.value = 'message.ctrlzoom';
   restrictMapUsageEvent(event, event.ctrlKey || event.altKey);
+}
+
+function mapTouchEvent(event: TouchEvent) {
+  overlayMessage.value = 'message.use2fingers';
+  restrictMapUsageEvent(event, event.touches.length > 1);
 }
 
 function registerMapEvents(map: Map) {
