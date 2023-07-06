@@ -12,10 +12,10 @@ import type { PersonSongs } from '@/_types/wedding-info';
 
 interface WeddingInfoState {
   mapLinks: MapLinksParsed;
-  songCategories: { [key: string]: SongCategoryHeaders };
+  songCategories: { [category: string]: SongCategoryHeaders };
   songs: SongHeaders[];
   isInitiated: boolean;
-  peopleInfo: { [key: string]: PeopleInfoHeaders };
+  peopleInfo: { [person: string]: PeopleInfoHeaders };
 }
 
 type WeddingInfoSources = Record<keyof Omit<WeddingInfoState, 'isInitiated'>, string>;
