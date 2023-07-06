@@ -12,7 +12,7 @@ interface PersonInfo {
   avatar: string;
 }
 
-export const usePeople = () => {
+export const useWeddingCouple = () => {
   const store = useMainStore();
   const { t } = useI18n<useI18nType>();
 

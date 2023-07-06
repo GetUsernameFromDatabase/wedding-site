@@ -17,7 +17,7 @@
 
       <v-navigation-drawer v-model="showDrawer" temporary>
         <v-list-item
-          v-for="person in people"
+          v-for="person in weddingCouple"
           :key="person.value.href"
           :prepend-avatar="person.value.avatar"
           :title="person.value.name"
@@ -66,14 +66,14 @@ import { Icon } from '@iconify/vue';
 import { useRouter } from 'vue-router';
 import type { useI18nType } from './plugins/i18n/vue-i18n';
 import { marionTheme, myMainTheme, ryanTheme } from './plugins/vuetify/themes';
-import { usePeople } from './composables/people';
+import { useWeddingCouple } from './composables/people';
 import LanguageSelect from './components/language-select.vue';
 import { useIcons } from './composables/icons';
 import { routesForNav as routes } from './plugins/router';
 
 const { t, locale } = useI18n<useI18nType>();
 const theme = useTheme();
-const people = usePeople();
+const weddingCouple = useWeddingCouple();
 const router = useRouter();
 
 const showDrawer = ref(false);

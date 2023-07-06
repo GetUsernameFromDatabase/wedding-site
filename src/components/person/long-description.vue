@@ -17,14 +17,14 @@
 </template>
 
 <script setup lang="ts">
-import { usePeople } from '@/composables/people';
+import { useWeddingCouple } from '@/composables/people';
 
-const people = usePeople();
+const weddingCouple = useWeddingCouple();
 
 interface Properties {
-  person: keyof typeof people;
+  person: keyof typeof weddingCouple;
 }
 const properties = defineProps<Properties>();
 
-const personInfo = people[properties.person];
+const personInfo = weddingCouple[properties.person];
 </script>

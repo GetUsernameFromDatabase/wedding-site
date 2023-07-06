@@ -32,17 +32,17 @@
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
-import { usePeople } from '@/composables/people';
+import { useWeddingCouple } from '@/composables/people';
 
 const { t } = useI18n<useI18nType>();
-const people = usePeople();
+const weddingCouple = useWeddingCouple();
 
 interface Properties {
-  person: keyof typeof people;
+  person: keyof typeof weddingCouple;
 }
 const properties = defineProps<Properties>();
 
 const show = ref(false);
 
-const personInfo = people[properties.person];
+const personInfo = weddingCouple[properties.person];
 </script>
