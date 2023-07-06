@@ -1,8 +1,7 @@
 <template>
-  <v-row class="h-full m-0">
-    <!-- TODO: Make mobile friendly -->
-    <v-card class="h-[calc(100vh-64px-40px)] -my-4 -ml-4 w-72" rounded="0">
-      <v-list v-model:opened="open">
+  <v-row justify="center" no-gutters>
+    <v-col cols="auto" class="max-sm:w-full">
+      <v-list v-model:opened="open" bg-color="primary" class="h-full w-full">
         <!-- TODO: search person functionality -->
         <v-list-item
           :prepend-icon="useIcons.searchPerson.vuetify"
@@ -29,9 +28,11 @@
           ></v-list-item>
         </v-list-group>
       </v-list>
-    </v-card>
-    <v-col class="my-auto">
-      <component :is="activeFloorSvg" v-if="activeFloorSvg"></component>
+    </v-col>
+    <v-col>
+      <v-sheet color="primary" class="w-full h-full flex p-4">
+        <component :is="activeFloorSvg" v-if="activeFloorSvg"></component>
+      </v-sheet>
     </v-col>
   </v-row>
 </template>
