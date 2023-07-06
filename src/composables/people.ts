@@ -20,14 +20,14 @@ export const usePeople = () => {
     name: store.dateNow.isBefore(weddingCeremonyDate) ? 'Ryan Kruberg' : 'Ryan Murulo',
     description: t('ryan.description'),
     subtitle: t('ryan.profession'),
-    href: '#/ryan',
+    href: '/ryan',
     avatar: 'https://avatars.githubusercontent.com/u/49920260?v=4',
   }));
   const marion = computed<PersonInfo>(() => ({
     name: 'Marion Murulo',
     description: t('marion.description'),
     subtitle: t('marion.profession'),
-    href: '#/marion',
+    href: '/marion',
     avatar:
       'https://media.licdn.com/dms/image/C4E03AQFTWNoK8uYYEw/profile-displayphoto-shrink_800_800/0/1627893179332?e=2147483647&v=beta&t=R1xpYiZE35TsgB2h9YSGzCzC4D8GCm3vWbiJCdrjnEM',
   }));

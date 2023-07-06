@@ -21,7 +21,7 @@
           :key="person.value.href"
           :prepend-avatar="person.value.avatar"
           :title="person.value.name"
-          :href="person.value.href"
+          :to="person.value.href"
         ></v-list-item>
 
         <v-divider class="border-opacity-75"></v-divider>
@@ -33,7 +33,7 @@
               :key="route.route"
               :prepend-icon="route.icon"
               :title="t(route.translateKey)"
-              :href="`#${route.route}`"
+              :to="route.route"
             ></v-list-item>
             <v-divider v-if="route.type === 'divider'" class="border-opacity-75"></v-divider>
           </template>
@@ -42,7 +42,7 @@
 
       <v-main scrollable>
         <v-container fluid class="w-full h-full"
-          ><suspense><component :is="currentView.component" /></suspense
+          ><suspense><RouterView></RouterView></suspense
         ></v-container>
       </v-main>
     </v-layout>
@@ -58,50 +58,48 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useTheme } from 'vuetify';
 import { useTitle } from '@vueuse/core';
 import { Icon } from '@iconify/vue';
+import { useRouter } from 'vue-router';
 import type { useI18nType } from './plugins/i18n/vue-i18n';
 import { marionTheme, myMainTheme, ryanTheme } from './plugins/vuetify/themes';
 import { usePeople } from './composables/people';
 import LanguageSelect from './components/language-select.vue';
 import { useIcons } from './composables/icons';
-import { useCustomRouting } from './composables/routing';
+import { routesForNav as routes } from './plugins/router';
 
 const { t, locale } = useI18n<useI18nType>();
 const theme = useTheme();
 const people = usePeople();
-const { currentPath, currentView, routes } = useCustomRouting();
 
 const showDrawer = ref(false);
 const vMainScroller = ref<Element | null>();
 
 // --- VUE WATCHERS ---
-watch(currentPath, pathChanged);
 watch(locale, localeChanged, { immediate: true });
 
-// --- VUE LIFECYCLE ---
-onMounted(() => {
-  changeThemeAccordingToPath();
-  window.addEventListener('hashchange', changeThemeAccordingToPath);
-  vMainScroller.value = document.querySelector('div.v-main__scroller');
+const router = useRouter();
+router.beforeResolve((to) => {
+  const path = to.path;
+  changeThemeAccordingToPath(path);
+  resetMainScroll();
 });
 
 // --- FUNCTIONS ---
-function changeThemeAccordingToPath() {
-  currentPath.value = window.location.hash;
-  if (currentPath.value.includes('ryan')) {
+function changeThemeAccordingToPath(path: string) {
+  if (path.startsWith('/ryan')) {
     theme.global.name.value = ryanTheme.name;
-  } else if (currentPath.value.includes('marion')) {
+  } else if (path.startsWith('/marion')) {
     theme.global.name.value = marionTheme.name;
   } else {
     theme.global.name.value = myMainTheme.name;
   }
 }
 
-function pathChanged() {
+function resetMainScroll() {
   if (vMainScroller.value) vMainScroller.value.scrollTop = 0;
   showDrawer.value = false;
 }
