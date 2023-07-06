@@ -19,11 +19,10 @@
             <v-list-item v-bind="props" :title="getHouseTranslation(house)"></v-list-item>
           </template>
 
-          <!-- TODO: `floor` with translation before index -->
           <v-list-item
             v-for="(floor, index) in houses[house].floors"
             :key="index"
-            :title="`Korrus ${index}`"
+            :title="t('message.floor', { n: index + 1 })"
             :prepend-icon="useIcons.floorPlan.vuetify"
             :value="house + index"
             @click="changeActiveFloor(house, index)"

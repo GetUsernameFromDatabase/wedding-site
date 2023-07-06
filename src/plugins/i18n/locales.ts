@@ -31,6 +31,7 @@ const estonianLocale = {
     songsTitle: '{person}i Laulud',
     ctrlzoom: 'Kasuta ctrl+kerijat, et kaardil suumida',
     use2fingers: 'Kasuta kahte sõrme, et kaarti liigutada',
+    floor: '{n}. Korrus',
   },
   navigation: {
     maps: 'Kaardid',
@@ -101,6 +102,7 @@ export const availableLocales: AvailableLocales = {
       songsTitle: "{person}'s Songs",
       ctrlzoom: 'Use ctrl+scroll to zoom the map',
       use2fingers: 'Use two fingers to move the map',
+      floor: '{n}. Floor',
     },
     navigation: {
       maps: 'Maps',
