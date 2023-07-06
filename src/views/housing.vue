@@ -30,7 +30,6 @@
         </v-list-group>
       </v-list>
     </v-card>
-    <!-- TODO: fix svg sizing -->
     <v-col class="my-auto">
       <component :is="activeFloorSvg" v-if="activeFloorSvg"></component>
     </v-col>
@@ -84,3 +83,9 @@ function changeActiveFloor(house: AvailableHouses, floor = 0) {
   router.replace({ path: route.path, query: { house, floor } });
 }
 </script>
+<style scoped>
+:deep(svg) {
+  max-height: calc(100vh - 64px - 40px - 4rem);
+  margin: auto;
+}
+</style>
