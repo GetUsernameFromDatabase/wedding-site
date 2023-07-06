@@ -15,7 +15,11 @@
           :prepend-icon="useIcons.housePlan.vuetify"
         >
           <template v-slot:activator="{ props }">
-            <v-list-item v-bind="props" :title="getHouseTranslation(house)"></v-list-item>
+            <v-list-item
+              v-bind="props"
+              :title="getHouseTranslation(house)"
+              :active="house === activeHouseKey"
+            ></v-list-item>
           </template>
 
           <v-list-item
@@ -25,6 +29,7 @@
             :prepend-icon="useIcons.floorPlan.vuetify"
             :value="house + index"
             @click="changeActiveFloor(house, index)"
+            :active="house === activeHouseKey && index === activeFloorIndex"
           ></v-list-item>
         </v-list-group>
       </v-list>
