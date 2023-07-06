@@ -32,31 +32,42 @@
     </v-card>
     <!-- TODO: fix svg sizing -->
     <v-col class="my-auto">
-      <component :is="activeFloorSvg"></component>
+      <component :is="activeFloorSvg" v-if="activeFloorSvg"></component>
     </v-col>
   </v-row>
 </template>
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRoute, useRouter } from 'vue-router';
 import { useHouses, type AvailableHouses } from '@/composables/housing';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 
 const { t } = useI18n<useI18nType>();
 const houses = useHouses();
+const route = useRoute();
+const router = useRouter();
 
 const availableHouses = Object.keys(houses) as AvailableHouses[];
 
 // --- VUE REFS ---
 const open = ref([]);
-const activeHouseKey = ref<AvailableHouses>('main_house');
-const activeFloorIndex = ref(0);
+const activeHouseKey = ref<AvailableHouses>(
+  (route.query['house'] as AvailableHouses) ?? 'main_house',
+);
+const activeFloorIndex = ref(Number.parseInt(String(route.query['floor'])) || 0);
 
 // --- VUE COMPUTED ---
-const activeFloorSvg = computed(
-  () => houses[activeHouseKey.value].floors[activeFloorIndex.value].svg,
-);
+const activeFloorSvg = computed(() => {
+  // TODO: error system
+  let house = houses[activeHouseKey.value];
+  if (!house) house = houses.main_house;
+
+  let floor = house.floors[activeFloorIndex.value];
+  if (!floor) floor = house.floors[0];
+  return floor.svg;
+});
 
 // --- FUNCTIONS ---
 function getHouseTranslation(house: AvailableHouses) {
@@ -70,5 +81,6 @@ function changeActiveFloor(house: AvailableHouses, floor = 0) {
 
   activeHouseKey.value = house;
   activeFloorIndex.value = floor;
+  router.replace({ path: route.path, query: { house, floor } });
 }
 </script>
