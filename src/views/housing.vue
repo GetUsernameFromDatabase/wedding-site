@@ -4,26 +4,27 @@
     <v-card class="h-[calc(100vh-64px-40px)] -my-4 -ml-4 w-72" rounded="0">
       <v-list v-model:opened="open">
         <!-- TODO: search person functionality -->
-        <v-list-item prepend-icon="mdi-account" title="SEARCH-PERSON"></v-list-item>
+        <v-list-item
+          :prepend-icon="useIcons.searchPerson.vuetify"
+          title="SEARCH-PERSON"
+        ></v-list-item>
 
-        <!-- TODO: icons to icon composable -->
         <v-list-group
           v-for="house in availableHouses"
           :key="house"
           :value="house"
-          prepend-icon="mdi-home"
+          :prepend-icon="useIcons.housePlan.vuetify"
         >
           <template v-slot:activator="{ props }">
             <v-list-item v-bind="props" :title="getHouseTranslation(house)"></v-list-item>
           </template>
 
-          <!-- TODO: icons to useIcon -->
           <!-- TODO: `floor` with translation before index -->
           <v-list-item
             v-for="(floor, index) in houses[house].floors"
             :key="index"
             :title="`Korrus ${index}`"
-            prepend-icon="mdi-floor-plan"
+            :prepend-icon="useIcons.floorPlan.vuetify"
             :value="house + index"
             @click="changeActiveFloor(house, index)"
           ></v-list-item>
@@ -42,6 +43,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { useHouses, type AvailableHouses } from '@/composables/housing';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
+import { useIcons } from '@/composables/icons';
 
 const { t } = useI18n<useI18nType>();
 const houses = useHouses();

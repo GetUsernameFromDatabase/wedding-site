@@ -15,7 +15,10 @@ type AvailableIcons =
   | 'lasita'
   | 'maps'
   | 'home'
-  | 'housing';
+  | 'housing'
+  | 'floorPlan'
+  | 'housePlan'
+  | 'searchPerson';
 
 export const useIcons: Record<AvailableIcons, IconComposableItem> = {
   contactPhone: { iconify: 'mdi:phone', vuetify: '' },
@@ -30,4 +33,7 @@ export const useIcons: Record<AvailableIcons, IconComposableItem> = {
   maps: { iconify: '', vuetify: 'mdi-map-outline' },
   home: { iconify: '', vuetify: 'mdi-home' },
   housing: { iconify: '', vuetify: 'mdi-home-account' },
+  housePlan: { iconify: '', vuetify: 'mdi-home' },
+  floorPlan: { iconify: '', vuetify: 'mdi-floor-plan' },
+  searchPerson: { iconify: '', vuetify: 'mdi-account' },
 };
