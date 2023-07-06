@@ -41,7 +41,7 @@
       </v-navigation-drawer>
 
       <v-main scrollable>
-        <v-container fluid class="w-full h-full"
+        <v-container fluid
           ><suspense><RouterView></RouterView></suspense
         ></v-container>
       </v-main>
@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useTheme } from 'vuetify';
 import { useTitle } from '@vueuse/core';
@@ -74,6 +74,7 @@ import { routesForNav as routes } from './plugins/router';
 const { t, locale } = useI18n<useI18nType>();
 const theme = useTheme();
 const people = usePeople();
+const router = useRouter();
 
 const showDrawer = ref(false);
 const vMainScroller = ref<Element | null>();
@@ -81,11 +82,14 @@ const vMainScroller = ref<Element | null>();
 // --- VUE WATCHERS ---
 watch(locale, localeChanged, { immediate: true });
 
-const router = useRouter();
 router.beforeResolve((to) => {
   const path = to.path;
   changeThemeAccordingToPath(path);
   resetMainScroll();
+});
+
+onMounted(() => {
+  vMainScroller.value = document.querySelector('div.v-main__scroller');
 });
 
 // --- FUNCTIONS ---
