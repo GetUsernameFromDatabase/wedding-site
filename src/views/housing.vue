@@ -1,12 +1,32 @@
 <template>
+  <!-- TODO: notify where person might be -->
+  <!-- TODO: navigate to searched person -->
   <v-row justify="center" no-gutters>
-    <v-col cols="auto" class="max-sm:w-full">
+    <v-col cols="auto" class="max-sm:w-full w-72">
       <v-list v-model:opened="open" bg-color="primary" class="h-full w-full">
-        <!-- TODO: search person functionality -->
-        <v-list-item
-          :prepend-icon="useIcons.searchPerson.vuetify"
-          title="SEARCH-PERSON"
-        ></v-list-item>
+        <v-list-item :prepend-icon="useIcons.searchPerson.vuetify">
+          <v-autocomplete
+            :items="peopleInfoKeys"
+            :label="t('message.searchPerson')"
+            class="m-1"
+            variant="solo-filled"
+            bg-color="primary"
+            density="compact"
+            hide-details="auto"
+            clearable
+            auto-select-first
+            ><template v-slot:item="data">
+              <v-list-item
+                :value="data.item.value"
+                :title="data.item.title"
+                @click="data.props.onClick"
+                :disabled="!hasRoom(data.item.value)"
+              >
+                <!-- TODO: tooltip on where person might be -->
+              </v-list-item>
+            </template></v-autocomplete
+          ></v-list-item
+        >
 
         <v-list-group
           v-for="house in availableHouses"
@@ -45,15 +65,18 @@
 import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
 import { useHouses, type AvailableHouses } from '@/composables/housing';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 import { useIcons } from '@/composables/icons';
+import { useWeddingInfo } from '@/stores/wedding-info';
 
 const { t } = useI18n<useI18nType>();
 const houses = useHouses();
 const route = useRoute();
 const router = useRouter();
+const weddingInfoStore = await useWeddingInfo();
 
 const availableHouses = Object.keys(houses) as AvailableHouses[];
 
@@ -63,6 +86,7 @@ const activeHouseKey = ref<AvailableHouses>(
   (route.query['house'] as AvailableHouses) ?? 'main_house',
 );
 const activeFloorIndex = ref(Number.parseInt(String(route.query['floor'])) || 0);
+const { peopleInfo } = storeToRefs(weddingInfoStore);
 
 // --- VUE COMPUTED ---
 const activeFloorSvg = computed(() => {
@@ -74,6 +98,7 @@ const activeFloorSvg = computed(() => {
   if (!floor) floor = house.floors[0];
   return floor.svg;
 });
+const peopleInfoKeys = computed(() => Object.keys(peopleInfo.value));
 
 // --- FUNCTIONS ---
 function getHouseTranslation(house: AvailableHouses) {
@@ -88,6 +113,12 @@ function changeActiveFloor(house: AvailableHouses, floor = 0) {
   activeHouseKey.value = house;
   activeFloorIndex.value = floor;
   router.replace({ path: route.path, query: { house, floor } });
+}
+
+function hasRoom(person: keyof typeof peopleInfo.value) {
+  const personInfo = peopleInfo.value[person];
+  if (personInfo['ROOM-ID'] && personInfo['ROOM-ID'] !== '0') return true;
+  return false;
 }
 </script>
 <style scoped>

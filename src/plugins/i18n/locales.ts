@@ -32,6 +32,7 @@ const estonianLocale = {
     ctrlzoom: 'Kasuta ctrl+kerijat, et kaardil suumida',
     use2fingers: 'Kasuta kahte sõrme, et kaarti liigutada',
     floor: '{n}. Korrus',
+    searchPerson: 'Otsi Majutust',
   },
   navigation: {
     maps: 'Kaardid',
@@ -103,6 +104,7 @@ export const availableLocales: AvailableLocales = {
       ctrlzoom: 'Use ctrl+scroll to zoom the map',
       use2fingers: 'Use two fingers to move the map',
       floor: '{n}. Floor',
+      searchPerson: 'Find Housing',
     },
     navigation: {
       maps: 'Maps',
