@@ -35,7 +35,7 @@
       </v-list>
     </v-col>
     <v-col>
-      <v-sheet color="primary" class="w-full h-full flex p-4">
+      <v-sheet color="secondary" class="w-full h-full flex p-4">
         <component :is="activeFloorSvg" v-if="activeFloorSvg"></component>
       </v-sheet>
     </v-col>
