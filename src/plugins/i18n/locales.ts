@@ -80,8 +80,8 @@ const estonianLocale = {
     },
   },
   lasita: {
-    shed: 'Maja',
-    forest_house: 'Metsamaja',
+    shed: 'Puukuur',
+    forest_house: 'Nõiamaja',
     forest_house_wc: 'WC',
     pond_house: 'Tiigimaja',
     sauna: 'Saun',
@@ -150,8 +150,8 @@ export const availableLocales: AvailableLocales = {
       },
     },
     lasita: {
-      shed: 'Building',
-      forest_house: 'Forest House',
+      shed: 'Wood Shed',
+      forest_house: "Witch's House",
       forest_house_wc: 'WC',
       pond_house: 'Pond House',
       sauna: 'Sauna',
