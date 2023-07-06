@@ -41,7 +41,7 @@
       </v-navigation-drawer>
 
       <v-main scrollable>
-        <v-container fluid
+        <v-container fluid class="w-full h-full"
           ><suspense><component :is="currentView.component" /></suspense
         ></v-container>
       </v-main>
