@@ -33,6 +33,7 @@ const estonianLocale = {
     use2fingers: 'Kasuta kahte sõrme, et kaarti liigutada',
     floor: '{n}. Korrus',
     searchPerson: 'Otsi Majutust',
+    goesHome: 'Ei ööbi',
   },
   navigation: {
     maps: 'Kaardid',
@@ -105,6 +106,7 @@ export const availableLocales: AvailableLocales = {
       use2fingers: 'Use two fingers to move the map',
       floor: '{n}. Floor',
       searchPerson: 'Find Housing',
+      goesHome: 'No housing',
     },
     navigation: {
       maps: 'Maps',

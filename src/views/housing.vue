@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: notify where person might be -->
   <v-row justify="center" no-gutters>
     <v-col cols="auto" class="max-sm:w-full w-72">
       <v-list v-model:opened="open" bg-color="primary" class="h-full w-full">
@@ -17,15 +16,23 @@
             auto-select-first
             ><template v-slot:item="data">
               <!-- TODO: find a way to get first non-disabled person with auto-select-first -->
-              <!-- TODO: find a way to add tooltip with when person disabled (with v-tooltip or an alternative way overall) -->
-              <v-list-item
-                v-bind="hasRoom(data.item.value) ? data.props : {}"
-                :value="data.item.value"
-                :title="data.item.title"
-                :disabled="!hasRoom(data.item.value)"
-              >
-              </v-list-item> </template></v-autocomplete
-        ></v-list-item>
+              <v-tooltip>
+                <template v-slot:activator="{ props }">
+                  <div v-bind="props">
+                    <v-list-item
+                      v-bind="hasRoom(data.item.value) ? data.props : {}"
+                      :value="data.item.value"
+                      :title="data.item.title"
+                      :disabled="!hasRoom(data.item.value)"
+                    >
+                    </v-list-item>
+                  </div>
+                </template>
+                <span>{{ getSearchPersonTooltip(data.item.value) }}</span>
+              </v-tooltip>
+            </template></v-autocomplete
+          ></v-list-item
+        >
 
         <v-list-group
           v-for="house in availableHouses"
@@ -104,8 +111,9 @@ const peopleInfoKeys = computed(() => Object.keys(peopleInfo.value));
 // --- VUE WATCH ---
 watch(selectedPerson, (value) => {
   if (!value) return;
-  const roomID = peopleInfo.value[value]['ROOM-ID'];
-  const foundInfo = findHouseAndFloorByRoom(`tuba-${roomID}`);
+
+  const room = getPersonRoom(value);
+  const foundInfo = findHouseAndFloorByRoom(room);
 
   if (!foundInfo) return;
   changeActiveFloor(foundInfo.houseKey, foundInfo.floorIndex);
@@ -129,6 +137,22 @@ function hasRoom(person: keyof typeof peopleInfo.value) {
   const personInfo = peopleInfo.value[person];
   if (personInfo['ROOM-ID'] && personInfo['ROOM-ID'] !== '0') return true;
   return false;
+}
+
+function getPersonRoom(person: string) {
+  const personInfo = peopleInfo.value[person];
+  const roomID = personInfo['ROOM-ID'];
+  return `tuba-${[roomID]}`;
+}
+
+function getSearchPersonTooltip(person: string) {
+  if (!hasRoom(person)) return t('message.goesHome');
+
+  const personRoom = getPersonRoom(person);
+  const houseAndRoomInfo = findHouseAndFloorByRoom(personRoom);
+
+  if (!houseAndRoomInfo) return '???';
+  return getHouseTranslation(houseAndRoomInfo.houseKey);
 }
 </script>
 <style scoped>
