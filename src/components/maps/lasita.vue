@@ -46,9 +46,11 @@ import lasitaGeoJson from '@/assets/lasita-geojson.json';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 import { useGeolocation } from '@/composables/openlayers';
+import { useDynamicTranslator } from '@/composables/translate';
 // TODO: show people in house with overlay
 
 const { t, locale } = useI18n<useI18nType>();
+const dynamicTranslator = useDynamicTranslator();
 
 const originalCenter = [26.3709, 58.3304];
 const originalZoom = 18;
@@ -63,11 +65,7 @@ const geolocationErrorMessage = ref('');
 const overlayMessage = ref<AllMessageSchemaKeys>('message.ctrlzoom');
 
 const geolocationErrorMessageDisplay = computed(() => {
-  const translateRoot: AllMessageSchemaKeys = 'errors.geolocation';
-  const translatedMessage = t(`${translateRoot}.${geolocationErrorMessage.value}`);
-
-  if (translatedMessage.startsWith(translateRoot)) return geolocationErrorMessage.value;
-  return translatedMessage;
+  return dynamicTranslator('errors.geolocation', geolocationErrorMessage.value);
 });
 
 const { start: timeoutOverlayStart } = useTimeoutFn(() => {
@@ -145,8 +143,7 @@ function makeGeoJsonLayer() {
       const featureName = feature.get('name');
       if (!featureName) return defaultStyle;
 
-      const translateRoot: AllMessageSchemaKeys = 'lasita';
-      var translatedName = t(`${translateRoot}.${featureName}`);
+      const translatedName = dynamicTranslator('lasita', featureName);
       labelStyle.getText().setText(translatedName);
 
       return [defaultStyle, labelStyle];

@@ -68,11 +68,12 @@ import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useHouses, type AvailableHouses } from '@/composables/housing';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
-import type { AllMessageSchemaKeys } from '@/plugins/i18n/locales';
 import { useIcons } from '@/composables/icons';
 import { useWeddingInfo } from '@/stores/wedding-info';
+import { useDynamicTranslator } from '@/composables/translate';
 
 const { t } = useI18n<useI18nType>();
+const dynamicTranslator = useDynamicTranslator();
 const houses = useHouses();
 const route = useRoute();
 const router = useRouter();
@@ -102,8 +103,7 @@ const peopleInfoKeys = computed(() => Object.keys(peopleInfo.value));
 
 // --- FUNCTIONS ---
 function getHouseTranslation(house: AvailableHouses) {
-  const translateRoot: AllMessageSchemaKeys = 'lasita';
-  return t(`${translateRoot}.${house}`);
+  return dynamicTranslator('lasita', house);
 }
 
 function changeActiveFloor(house: AvailableHouses, floor = 0) {
