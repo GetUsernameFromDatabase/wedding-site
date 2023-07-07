@@ -17,9 +17,9 @@
             auto-select-first
             ><template v-slot:item="data">
               <v-list-item
+                v-bind="hasRoom(data.item.value) ? data.props : {}"
                 :value="data.item.value"
                 :title="data.item.title"
-                @click="data.props.onClick"
                 :disabled="!hasRoom(data.item.value)"
               >
                 <!-- TODO: tooltip on where person might be -->
