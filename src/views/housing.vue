@@ -1,11 +1,11 @@
 <template>
   <!-- TODO: notify where person might be -->
-  <!-- TODO: navigate to searched person -->
   <v-row justify="center" no-gutters>
     <v-col cols="auto" class="max-sm:w-full w-72">
       <v-list v-model:opened="open" bg-color="primary" class="h-full w-full">
         <v-list-item :prepend-icon="useIcons.searchPerson.vuetify">
           <v-autocomplete
+            v-model="selectedPerson"
             :items="peopleInfoKeys"
             :label="t('message.searchPerson')"
             class="m-1"
@@ -61,7 +61,7 @@
   </v-row>
 </template>
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
@@ -73,7 +73,7 @@ import { useDynamicTranslator } from '@/composables/translate';
 
 const { t } = useI18n<useI18nType>();
 const dynamicTranslator = useDynamicTranslator();
-const houses = useHouses();
+const { houses, findHouseAndFloorByRoom } = useHouses();
 const route = useRoute();
 const router = useRouter();
 const weddingInfoStore = await useWeddingInfo();
@@ -82,6 +82,7 @@ const availableHouses = Object.keys(houses) as AvailableHouses[];
 
 // --- VUE REFS ---
 const open = ref([]);
+const selectedPerson = ref<string>();
 const activeHouseKey = ref<AvailableHouses>(
   (route.query['house'] as AvailableHouses) ?? 'main_house',
 );
@@ -99,6 +100,16 @@ const activeFloorSvg = computed(() => {
   return floor.svg;
 });
 const peopleInfoKeys = computed(() => Object.keys(peopleInfo.value));
+
+// --- VUE WATCH ---
+watch(selectedPerson, (value) => {
+  if (!value) return;
+  const roomID = peopleInfo.value[value]['ROOM-ID'];
+  const foundInfo = findHouseAndFloorByRoom(`tuba-${roomID}`);
+
+  if (!foundInfo) return;
+  changeActiveFloor(foundInfo.houseKey, foundInfo.floorIndex);
+});
 
 // --- FUNCTIONS ---
 function getHouseTranslation(house: AvailableHouses) {
