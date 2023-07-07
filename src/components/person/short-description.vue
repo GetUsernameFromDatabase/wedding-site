@@ -7,7 +7,7 @@
     <v-card-subtitle> {{ personInfo.subtitle }} </v-card-subtitle>
 
     <v-card-actions>
-      <v-btn color="primary" variant="text" :href="personInfo.href">
+      <v-btn color="primary" variant="text" :href="personInfo.to">
         {{ t('navigation.explore') }}
       </v-btn>
 

@@ -9,7 +9,7 @@ interface PersonInfo {
   name: string;
   description: string;
   subtitle: string;
-  href: string;
+  to: string;
   avatar: string;
 }
 
@@ -23,14 +23,14 @@ export const useWeddingCouple = () => {
     name: store.dateNow.isBefore(weddingCeremonyDate) ? 'Ryan Kruberg' : 'Ryan Murulo',
     description: t('ryan.description'),
     subtitle: t('ryan.profession'),
-    href: weddingCoupleRoutePaths.ryan,
+    to: weddingCoupleRoutePaths.ryan,
     avatar: `${basePath}/ryan.png`,
   }));
   const marion = computed<PersonInfo>(() => ({
     name: 'Marion Murulo',
     description: t('marion.description'),
     subtitle: t('marion.profession'),
-    href: weddingCoupleRoutePaths.marion,
+    to: weddingCoupleRoutePaths.marion,
     avatar: `${basePath}/marion.jpg`,
   }));
   return { ryan, marion };

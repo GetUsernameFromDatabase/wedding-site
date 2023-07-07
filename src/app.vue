@@ -18,10 +18,10 @@
       <v-navigation-drawer v-model="showDrawer" temporary>
         <v-list-item
           v-for="person in weddingCouple"
-          :key="person.value.href"
+          :key="person.value.to"
           :prepend-avatar="person.value.avatar"
           :title="person.value.name"
-          :to="person.value.href"
+          :to="person.value.to"
         ></v-list-item>
 
         <v-divider class="border-opacity-75"></v-divider>
