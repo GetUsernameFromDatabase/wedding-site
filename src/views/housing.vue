@@ -66,6 +66,16 @@
       </v-sheet>
     </v-col>
   </v-row>
+  <v-row>
+    <v-col>
+      <v-card color="primary">
+        <v-card-title class="text-h6 flex w-full justify-center">
+          {{ t('maps.lasita') }}
+        </v-card-title>
+        <v-card-item><map-lasita></map-lasita></v-card-item>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
@@ -77,6 +87,7 @@ import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import { useIcons } from '@/composables/icons';
 import { useWeddingInfo } from '@/stores/wedding-info';
 import { useDynamicTranslator } from '@/composables/translate';
+import MapLasita from '@/components/maps/lasita.vue';
 
 const { t } = useI18n<useI18nType>();
 const dynamicTranslator = useDynamicTranslator();
