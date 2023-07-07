@@ -16,17 +16,16 @@
             clearable
             auto-select-first
             ><template v-slot:item="data">
+              <!-- TODO: find a way to get first non-disabled person with auto-select-first -->
+              <!-- TODO: find a way to add tooltip with when person disabled (with v-tooltip or an alternative way overall) -->
               <v-list-item
                 v-bind="hasRoom(data.item.value) ? data.props : {}"
                 :value="data.item.value"
                 :title="data.item.title"
                 :disabled="!hasRoom(data.item.value)"
               >
-                <!-- TODO: tooltip on where person might be -->
-              </v-list-item>
-            </template></v-autocomplete
-          ></v-list-item
-        >
+              </v-list-item> </template></v-autocomplete
+        ></v-list-item>
 
         <v-list-group
           v-for="house in availableHouses"
