@@ -13,6 +13,8 @@ interface PersonInfo {
   avatar: string;
 }
 
+export const weddingCoupleRoutePaths = { ryan: '/ryan', marion: '/marion' };
+
 export const useWeddingCouple = () => {
   const store = useMainStore();
   const { t } = useI18n<useI18nType>();
@@ -21,14 +23,14 @@ export const useWeddingCouple = () => {
     name: store.dateNow.isBefore(weddingCeremonyDate) ? 'Ryan Kruberg' : 'Ryan Murulo',
     description: t('ryan.description'),
     subtitle: t('ryan.profession'),
-    href: '/ryan',
+    href: weddingCoupleRoutePaths.ryan,
     avatar: `${basePath}/ryan.png`,
   }));
   const marion = computed<PersonInfo>(() => ({
     name: 'Marion Murulo',
     description: t('marion.description'),
     subtitle: t('marion.profession'),
-    href: '/marion',
+    href: weddingCoupleRoutePaths.marion,
     avatar: `${basePath}/marion.jpg`,
   }));
   return { ryan, marion };

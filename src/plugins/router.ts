@@ -3,6 +3,7 @@ import { useIcons } from '@/composables/icons';
 import type { RouteList, SimpleRoute } from '@/_types/routes';
 import { View404, ViewHousing, ViewIndex, ViewMaps, ViewMarion, ViewRyan } from '@/views';
 import { basePath } from '@/config';
+import { weddingCoupleRoutePaths } from '@/composables/people';
 
 export const routesForNav: RouteList = [
   {
@@ -26,8 +27,8 @@ export const routesForNav: RouteList = [
     icon: useIcons.housing.vuetify,
     translateKey: 'navigation.housing',
   },
-  { type: 'simple', route: '/ryan', component: ViewRyan },
-  { type: 'simple', route: '/marion', component: ViewMarion },
+  { type: 'simple', route: weddingCoupleRoutePaths.ryan, component: ViewRyan },
+  { type: 'simple', route: weddingCoupleRoutePaths.marion, component: ViewMarion },
   { type: 'divider' },
 ];
 
