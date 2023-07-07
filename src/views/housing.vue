@@ -137,6 +137,12 @@ watch(selectedPerson, (value) => {
   changeActiveRoom(value);
   changeActiveFloor(foundInfo.houseKey, foundInfo.floorIndex);
 });
+watch(activeFloorSvgElement, () => {
+  // This is so that it would work when navigating to new floor
+  const person = selectedPerson.value;
+  if (!person) return;
+  changeActiveRoom(person);
+});
 
 // --- FUNCTIONS ---
 function getHouseTranslation(house: AvailableHouses) {
