@@ -7,7 +7,7 @@
           <v-app-bar-nav-icon @click="showDrawer = !showDrawer"></v-app-bar-nav-icon> </template
         ><v-toolbar-title class="text-center">
           <v-img
-            src="/wedding-site/marion-ryan-logo.png"
+            :src="`${basePath}/marion-ryan-logo.png`"
             max-height="56"
             aspect-ratio="16/9"
             :height="64"
@@ -70,6 +70,7 @@ import { useWeddingCouple } from './composables/people';
 import LanguageSelect from './components/language-select.vue';
 import { useIcons } from './composables/icons';
 import { routesForNav as routes } from './plugins/router';
+import { basePath } from './config';
 
 const { t, locale } = useI18n<useI18nType>();
 const theme = useTheme();
