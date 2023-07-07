@@ -9,9 +9,12 @@ import forestHouse from '@/assets/building-floors/forest_house.svg?component';
 
 export type AvailableHouses = 'main_house' | 'pond_house' | 'sauna' | 'forest_house';
 
+interface CustomSVGAttributes extends SVGAttributes {
+  ref?: string;
+}
 interface Floor {
   // eslint-disable-next-line @typescript-eslint/ban-types
-  svg: FunctionalComponent<SVGAttributes, {}, never>;
+  svg: FunctionalComponent<CustomSVGAttributes, {}, never>;
   rooms?: string[];
 }
 

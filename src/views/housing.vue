@@ -62,7 +62,11 @@
     </v-col>
     <v-col>
       <v-sheet color="secondary" class="w-full h-full flex p-4">
-        <component :is="activeFloorSvg" v-if="activeFloorSvg"></component>
+        <activeFloorSvg
+          class="max-h-[calc(100vh-64px-40px-4rem)] m-auto"
+          ref="activeFloorSvgElement"
+          v-if="Boolean(activeFloorSvg)"
+        ></activeFloorSvg>
       </v-sheet>
     </v-col>
   </v-row>
@@ -82,6 +86,7 @@ import { ref, computed, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
+import type { ComponentPublicInstance } from 'vue';
 import { useHouses, type AvailableHouses } from '@/composables/housing';
 import type { useI18nType } from '@/plugins/i18n/vue-i18n';
 import { useIcons } from '@/composables/icons';
@@ -100,6 +105,7 @@ const availableHouses = Object.keys(houses) as AvailableHouses[];
 
 // --- VUE REFS ---
 const open = ref([]);
+const activeFloorSvgElement = ref<ComponentPublicInstance>();
 const selectedPerson = ref<string>();
 const activeHouseKey = ref<AvailableHouses>(
   (route.query['house'] as AvailableHouses) ?? 'main_house',
@@ -127,6 +133,8 @@ watch(selectedPerson, (value) => {
   const foundInfo = findHouseAndFloorByRoom(room);
 
   if (!foundInfo) return;
+
+  changeActiveRoom(value);
   changeActiveFloor(foundInfo.houseKey, foundInfo.floorIndex);
 });
 
@@ -142,6 +150,26 @@ function changeActiveFloor(house: AvailableHouses, floor = 0) {
   activeHouseKey.value = house;
   activeFloorIndex.value = floor;
   router.replace({ path: route.path, query: { house, floor } });
+}
+
+function changeActiveRoom(person: string) {
+  const svg = activeFloorSvgElement.value;
+  if (!svg) return;
+
+  const personRoom = getPersonRoom(person);
+  const svgElement: SVGElement = svg.$el;
+  const svgRoom = svgElement.querySelector(`#${personRoom}`);
+  if (!(svgRoom instanceof SVGElement)) {
+    return;
+  }
+
+  const elementsWithId = svgElement.querySelectorAll('[id]');
+  for (const element of elementsWithId) {
+    if (element instanceof SVGElement) {
+      element.style.fill = 'white';
+    }
+  }
+  svgRoom.style.fill = 'rgb(var(--v-theme-primary))';
 }
 
 function hasRoom(person: keyof typeof peopleInfo.value) {
