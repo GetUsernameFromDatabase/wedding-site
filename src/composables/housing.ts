@@ -38,5 +38,17 @@ export const useHouses = () => {
     },
     sauna: { floors: [{ svg: sauna, rooms: ['tuba-9'] }] },
   };
-  return houses;
+
+  const findHouseAndFloorByRoom = (room: string) => {
+    for (const houseKey in houses) {
+      const house = houses[houseKey as AvailableHouses];
+      for (const [floorIndex, floor] of house.floors.entries()) {
+        if (floor.rooms && floor.rooms.includes(room)) {
+          return { houseKey: houseKey as AvailableHouses, floorIndex };
+        }
+      }
+    }
+    return;
+  };
+  return { houses, findHouseAndFloorByRoom };
 };
